@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "module-frontend": {
+    "wahlrecht-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/module-frontend",
+            "outputPath": "dist/wahlrecht-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -31,9 +31,18 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
+              "src/sass/styles.scss"
             ],
-            "scripts": []
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/sass"
+              ]
+            },
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "base64-js",
+              "js-sha256"
+            ]
           },
           "configurations": {
             "production": {
@@ -72,10 +81,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "module-frontend:build:production"
+              "browserTarget": "wahlrecht-frontend:build:production"
             },
             "development": {
-              "browserTarget": "module-frontend:build:development"
+              "browserTarget": "wahlrecht-frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +92,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "module-frontend:build"
+            "browserTarget": "wahlrecht-frontend:build"
           }
         },
         "test": {
@@ -101,8 +110,13 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.scss"
+              "src/sass/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/sass"
+              ]
+            },
             "scripts": []
           }
         }

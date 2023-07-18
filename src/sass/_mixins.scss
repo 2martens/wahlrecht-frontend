@@ -1,0 +1,51 @@
+@mixin container() {
+  display: flex;
+}
+
+@mixin flexDirection($value: row) {
+  flex-direction: $value;
+}
+
+@mixin flexWrap($value: nowrap) {
+  flex-wrap: $value;
+}
+
+@mixin justifyContent($value) {
+  justify-content: $value;
+}
+
+@mixin alignItems($value) {
+  align-items: $value;
+}
+
+@mixin order($order: 0) {
+  order: $order;
+}
+
+@mixin flex($grow: 0, $shrink: 1, $basis: auto) {
+  flex: $grow $shrink $basis;
+}
+
+.row {
+  @include container();
+  @include flexDirection(row);
+  @include justifyContent(center);
+  @include alignItems(stretch)
+}
+
+// Two-column layout with one main column and one sidebar column (left or right)
+@mixin twoColumnLayout() {
+  .mainContentColumn {
+    @include flex(9, 0);
+  }
+  .sidebarColumn {
+    @include flex(3, 0)
+  }
+}
+
+// One column that does not grow but takes up 60% of the space
+@mixin centralColumnLayout() {
+  .mainContentColumn {
+    @include flex(0, 1, 60%);
+  }
+}
