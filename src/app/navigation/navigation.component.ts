@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {KeycloakService} from "keycloak-angular";
-import {from} from "rxjs";
+import {from, of, switchMap} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
@@ -9,17 +9,23 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent {
-  loggedUserName = '';
-  isLoggedIn$ = from(this.keycloakService.isLoggedIn());
+  loggedUserName$;
+  isLoggedIn$;
   url: string;
 
   constructor(private keycloakService: KeycloakService,
               private route: ActivatedRoute) {
     this.url = route.snapshot.url.join('');
-  }
-
-  ngOnInit(): void {
-    this.loggedUserName = this.keycloakService.getUsername();
+    this.isLoggedIn$ = from(this.keycloakService.isLoggedIn());
+    this.loggedUserName$ = this.isLoggedIn$.pipe(
+      switchMap(loggedIn => {
+        if (loggedIn) {
+          return of(this.keycloakService.getUsername());
+        } else {
+          return of('');
+        }
+      })
+    )
   }
 
   login(): void {
