@@ -2,13 +2,14 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {addMessageAction, addMessageFinishedAction} from "./messages.actions";
 import {map} from "rxjs";
-import {Injectable} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 
 @Injectable()
 export class MessagesEffects {
-  constructor(private actions$: Actions,
-              private snackBar: MatSnackBar) {
+  constructor(private snackBar: MatSnackBar) {
   }
+
+  private actions$ = inject(Actions);
 
   showSnackbar$ = createEffect(() =>
       this.actions$.pipe(

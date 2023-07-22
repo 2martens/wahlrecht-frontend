@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {ElectionService} from "../election.service";
 import {
   loadAllElectionsAction,
@@ -11,28 +11,24 @@ import {Actions, createEffect, ofType} from "@ngrx/effects";
 
 @Injectable()
 export class ElectionsEffects {
-  constructor(private actions$: Actions,
-              private electionService: ElectionService) {
-  }
 
-  loadAllElections$ = createEffect(() => this.actions$.pipe(
-      ofType(loadAllElectionsAction),
-      switchMap(() => this.electionService.getElections()
-          .pipe(
-              map(elections => loadAllElectionsFinishedAction({payload: elections}))
-          )
+  loadAllElections$ = createEffect(
+    (actions$ = inject(Actions), electionService = inject(ElectionService)) => {
+      return actions$.pipe(
+        ofType(loadAllElectionsAction),
+        switchMap(() => electionService.fetchElections()),
+        map(elections => loadAllElectionsFinishedAction({payload: elections}))
       )
-  ));
+    },
+    {functional: true});
 
-  loadSingleElection$ = createEffect(() => {
-    return this.actions$.pipe(
+  loadSingleElection$ = createEffect(
+    (actions$ = inject(Actions), electionService = inject(ElectionService)) => {
+      return actions$.pipe(
         ofType(loadSingleElectionAction),
-        switchMap((action) => this.electionService.selectElection(action.payload)
-            .pipe(
-                map(election =>
-                    loadSingleElectionFinishedAction({payload: election}))
-            )
-        ),
-    )
-  });
+        switchMap((action) => electionService.selectElection(action.payload)),
+        map(election => loadSingleElectionFinishedAction({payload: election}))
+      )
+    },
+    {functional: true});
 }
