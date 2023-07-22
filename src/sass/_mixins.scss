@@ -49,3 +49,9 @@
     @include flex(0, 1, 60%);
   }
 }
+
+
+@mixin justifiedText() {
+  text-align: justify;
+  text-justify: inter-word;
+}
