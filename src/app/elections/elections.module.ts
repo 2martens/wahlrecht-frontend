@@ -1,17 +1,18 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {ElectionsComponent} from "./elections.component";
+import {LandingPageComponent} from "./landingpage/landing-page.component";
 import {StoreModule} from "@ngrx/store";
 import {ElectionsEffects} from "./store/elections.effects";
 import {EffectsModule} from "@ngrx/effects";
 import {electionsReducers, featureStateName} from "./store";
 import {ElectionsRoutingModule} from "./elections-routing.module";
 import {MatTableModule} from "@angular/material/table";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
   declarations: [
-    ElectionsComponent
+    LandingPageComponent
   ],
   imports: [
     CommonModule,
@@ -19,9 +20,10 @@ import {MatTableModule} from "@angular/material/table";
     StoreModule.forFeature(featureStateName, electionsReducers),
     EffectsModule.forFeature([ElectionsEffects]),
     MatTableModule,
+    MatProgressSpinnerModule,
   ],
   exports: [
-    ElectionsComponent
+    LandingPageComponent
   ]
 })
 export class ElectionsModule {

@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {ElectionsComponent} from "./elections.component";
+import {LandingPageComponent} from "./landingpage/landing-page.component";
 import {AppAuthGuard} from "../auth/auth.guard";
 
 const routes: Routes = [
   {
     path: '',
-    component: ElectionsComponent,
+    component: LandingPageComponent,
     canActivate: [AppAuthGuard]
   }
 ];
