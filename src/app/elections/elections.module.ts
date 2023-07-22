@@ -6,6 +6,7 @@ import {ElectionsEffects} from "./store/elections.effects";
 import {EffectsModule} from "@ngrx/effects";
 import {electionsReducers, featureStateName} from "./store";
 import {ElectionsRoutingModule} from "./elections-routing.module";
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import {ElectionsRoutingModule} from "./elections-routing.module";
     ElectionsRoutingModule,
     StoreModule.forFeature(featureStateName, electionsReducers),
     EffectsModule.forFeature([ElectionsEffects]),
+    MatTableModule,
   ],
   exports: [
     ElectionsComponent

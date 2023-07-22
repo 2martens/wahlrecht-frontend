@@ -5,18 +5,17 @@ import {PermissionDeniedComponent} from "./permission-denied/permission-denied.c
 
 const routes: Routes = [
   {
+    path: 'elections',
+    loadChildren: () => import("./elections/elections.module").then(mod => mod.ElectionsModule)
+  },
+  {
+    path: 'permission-denied',
+    component: PermissionDeniedComponent
+  },
+  {
     path: '',
     component: DashboardComponent,
-    children: [
-      {
-        path: 'elections',
-        loadChildren: () => import("./elections/elections.module").then(mod => mod.ElectionsModule)
-      },
-      {
-        path: 'permission-denied',
-        component: PermissionDeniedComponent
-      }
-    ]
+    pathMatch: 'full'
   }
 ];
 

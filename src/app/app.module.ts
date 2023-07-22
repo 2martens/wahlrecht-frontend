@@ -67,7 +67,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatSidenavModule,
     MatMenuModule,
     MatTableModule,
-    ElectionsModule,
     MessagesModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([])
