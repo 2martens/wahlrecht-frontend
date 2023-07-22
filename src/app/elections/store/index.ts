@@ -24,5 +24,5 @@ export const allElections = () => createSelector(
 export const electionByName = (name: string) => createSelector(
     getElectionsFeatureState,
     (state: ElectionsState) =>
-        state.elections.items.find(election => election.name === name)
+        state.elections.items?.find(election => election.name === name)
 );
