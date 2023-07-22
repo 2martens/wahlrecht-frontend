@@ -23,7 +23,8 @@ export class ElectionService {
               private store: Store,
               private messageService: MessagesService) { }
 
-  getElections(): Observable<Election[]> {
+
+  fetchElections(): Observable<Election[]> {
     return this.http.get<Election[]>(this.electionsURL, this.httpOptions)
       .pipe(
         catchError(this.handleError<Election[]>('getElections', []))
