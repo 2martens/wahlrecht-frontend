@@ -16,10 +16,16 @@
         (click)="drawer.toggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
+      <button
+        type="button"
+        mat-icon-button
+        [routerLink]="''">
+        <mat-icon>home</mat-icon>
+      </button>
       <span i18n="application title|The application title in the toolbar">Electoral Law</span>
       <span class="spacer"></span>
       <ng-container *ngIf="isLoggedIn$ | async; else loginButton">
-        <span class="logged-user">Logged in as {{loggedUserName}}</span>
+        <span class="logged-user">Logged in as {{loggedUserName$ | async}}</span>
         <button mat-raised-button class="app-nav-icon" (click)="logout()">Logout</button>
       </ng-container>
       <ng-template #loginButton>
