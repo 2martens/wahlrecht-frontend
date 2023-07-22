@@ -15,7 +15,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
   electionColumns: string[] = ['name', 'day', 'totalNumberOfSeats', 'votingThreshold'];
   elections: Election[] = [];
   elections$ = this.store.select(allElections());
-  hasLoaded = false;
   private subscription?: Subscription;
 
   ngOnInit() {
@@ -23,7 +22,6 @@ export class LandingPageComponent implements OnInit, OnDestroy {
     this.subscription = this.elections$.subscribe({
       next: (newData) => {
         this.elections = newData;
-        this.hasLoaded = true;
       }
     })
   }

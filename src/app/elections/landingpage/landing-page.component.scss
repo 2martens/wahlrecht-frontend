@@ -5,3 +5,7 @@
 p {
   @include mixins.justifiedText();
 }
+
+.spinner {
+  @include mixins.justifyContent(center);
+}
