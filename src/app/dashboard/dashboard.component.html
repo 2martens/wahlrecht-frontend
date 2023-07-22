@@ -1,7 +1,42 @@
 <div class="row">
-  <p class="mat-body-1 mainContentColumn" i18n="welcome text|A welcome to users">
-    Welcome to the Electoral Law application. This application allows you to
-    view stored elections and their results in Hamburg. Furthermore, you
-    can play around in a what-if mode to see how vote changes affect the result.
-  </p>
+  <h1 class="mat-headline-5 mainContentColumn" i18n="page title">Electoral Law for the Hamburg district elections</h1>
+</div>
+
+<div class="row">
+  <div class="mainContentColumn">
+    <p class="mat-body-1" i18n="welcome text|A welcome to users">
+      Welcome to the Electoral Law application. This application allows you to
+      view stored elections and their results in Hamburg. Furthermore, you
+      can play around in a what-if mode to see how vote changes affect the result.
+    </p>
+
+    <h2 id="districtElections" class="mat-headline-6" i18n="section title">What are district elections?</h2>
+    <p class="mat-body-1" i18n="explanation|An explanation of the district elections">
+      Every five years, EU citizens in Hamburg can vote in the district election, parallel
+      to the election of the European parliament. Hamburg has seven districts and each
+      has an elected district assembly that is elected in these district elections.
+
+      All citizens of the European Union, who have their permanent residence in one of the
+      districts and are 16 years and older, can vote in the elections.
+    </p>
+
+    <h2 id="voting" class="mat-headline-6" i18n="section title">How do you vote?</h2>
+    <p class="mat-body-1" i18n="explanation|An explanation how the vote can be cast">
+      Every voter has a total of 10 votes. These are split between five votes in the
+      constituency of the voter and five votes for the entire district.
+      For the constituency vote, the five votes can be allocated to a single candidate or spread
+      between multiple candidates. The overall district votes can be given to one candidate or one party
+      or spread between candidates and/or parties. This type of vote allocation leads to unpredictable
+      allocation of the seats of one party to its candidates; after all, the vote count of each candidate
+      matters.
+    </p>
+
+    <h2 id="voteCounting" class="mat-headline-6" i18n="section title">How are the winners calculated?</h2>
+    <p class="mat-body-1" i18n="explanation|An explanation how the results lead to the elected candidates">
+      This is the tricky part. Roughly, the calculation follows this order: (1) filter out parties that did
+      not pass the voting threshold of 3%, (2) calculate the number of seats of remaining parties, (3) calculate
+      elected candidates in constituencies, (4) calculate elected candidates district-wide. The purpose of this
+      application is to help you understand this calculation.
+    </p>
+  </div>
 </div>
