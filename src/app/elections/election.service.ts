@@ -4,9 +4,10 @@ import {environment} from "../../environments/environment";
 import {Election} from "./model/election";
 import {catchError, Observable, of} from "rxjs";
 import {Store} from "@ngrx/store";
-import {electionByName} from "./store";
 import {MessagesService} from "../messages/messages.service";
 import {MessageType} from "../messages/model/message-type";
+import {ElectionResult} from "./model/election-result";
+import {Party} from "./model/party";
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,9 @@ import {MessageType} from "../messages/model/message-type";
 export class ElectionService {
 
   private electionsURL = environment.backendURL + '/elections';
+  private electionResultURL = environment.backendURL + '/electionResult/by-election-name/';
+  private electionURL = environment.backendURL + '/elections/by-name/';
+  private partiesURL = environment.backendURL + '/parties/by-election-name/';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,12 +31,29 @@ export class ElectionService {
   fetchElections(): Observable<Election[]> {
     return this.http.get<Election[]>(this.electionsURL, this.httpOptions)
       .pipe(
-        catchError(this.handleError<Election[]>('getElections', []))
+        catchError(this.handleError<Election[]>('fetchElections', []))
       );
   }
 
-  selectElection(name: string) {
-    return this.store.select(electionByName(name));
+  fetchParties(electionName: string): Observable<Party[]> {
+    return this.http.get<Party[]>(`${this.partiesURL}${electionName}`, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Party[]>('fetchParties', []))
+      );
+  }
+
+  fetchElectionResult(electionName: string): Observable<ElectionResult> {
+    return this.http.get<ElectionResult>(`${this.electionResultURL}${electionName}`, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<ElectionResult>('fetchElectionResult', undefined))
+      );
+  }
+
+  fetchElection(name: string) {
+    return this.http.get<Election>(`${this.electionURL}${name}`, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<Election>('fetchElection', undefined))
+      );
   }
 
   /**

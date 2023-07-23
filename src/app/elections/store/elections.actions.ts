@@ -1,5 +1,7 @@
 import {createAction, props} from "@ngrx/store";
 import {Election} from "../model/election";
+import {ElectionResult} from "../model/election-result";
+import {Party} from "../model/party";
 
 export enum ActionTypes {
   LoadAllElections = '[Elections] Load All Elections',
@@ -7,6 +9,12 @@ export enum ActionTypes {
 
   LoadSingleElection = '[Elections] Load Single Election',
   LoadSingleElectionFinished = '[Elections] Load Single Election Finished',
+
+  LoadElectionResult = '[Elections] Load Election Result',
+  LoadElectionResultFinished = '[Elections] Load Election Result Finished',
+
+  LoadParties = '[Elections] Load Parties',
+  LoadPartiesFinished = '[Elections] Load Parties Finished',
 }
 
 export const loadAllElectionsAction = createAction(
@@ -26,4 +34,24 @@ export const loadSingleElectionAction = createAction(
 export const loadSingleElectionFinishedAction = createAction(
     ActionTypes.LoadSingleElectionFinished,
     props<{payload: Election|undefined}>()
+);
+
+export const loadElectionResultAction = createAction(
+  ActionTypes.LoadElectionResult,
+  props<{payload: string}>()
+);
+
+export const loadElectionResultFinishedAction = createAction(
+  ActionTypes.LoadElectionResultFinished,
+  props<{payload: ElectionResult|undefined}>()
+);
+
+export const loadPartiesAction = createAction(
+  ActionTypes.LoadParties,
+  props<{payload: string}>()
+);
+
+export const loadPartiesFinishedAction = createAction(
+  ActionTypes.LoadPartiesFinished,
+  props<{payload: Party[]}>()
 );

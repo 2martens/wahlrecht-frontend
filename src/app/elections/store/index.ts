@@ -26,3 +26,21 @@ export const electionByName = (name: string) => createSelector(
     (state: ElectionsState) =>
         state.elections.items?.find(election => election.name === name)
 );
+
+export const selectedElection = () => createSelector(
+  getElectionsFeatureState,
+  (state: ElectionsState) =>
+    state.elections.selectedItem
+);
+
+export const selectedElectionResult = () => createSelector(
+  getElectionsFeatureState,
+  (state: ElectionsState) =>
+    state.elections.selectedElectionResult
+);
+
+export const selectedParties = () => createSelector(
+  getElectionsFeatureState,
+  (state: ElectionsState) =>
+    state.elections.selectedParties
+);

@@ -3,6 +3,10 @@ import {ElectionService} from "../election.service";
 import {
   loadAllElectionsAction,
   loadAllElectionsFinishedAction,
+  loadElectionResultAction,
+  loadElectionResultFinishedAction,
+  loadPartiesAction,
+  loadPartiesFinishedAction,
   loadSingleElectionAction,
   loadSingleElectionFinishedAction
 } from "./elections.actions";
@@ -25,12 +29,32 @@ export class ElectionsEffects {
     },
     {functional: true});
 
+  loadElectionResult$ = createEffect(
+    (actions$ = inject(Actions), electionService = inject(ElectionService)) => {
+      return actions$.pipe(
+        ofType(loadElectionResultAction),
+        switchMap((action) => electionService.fetchElectionResult(action.payload)),
+        map(result => loadElectionResultFinishedAction({payload: result}))
+      )
+    },
+    {functional: true});
+
   loadSingleElection$ = createEffect(
     (actions$ = inject(Actions), electionService = inject(ElectionService)) => {
       return actions$.pipe(
         ofType(loadSingleElectionAction),
-        switchMap((action) => electionService.selectElection(action.payload)),
+        switchMap((action) => electionService.fetchElection(action.payload)),
         map(election => loadSingleElectionFinishedAction({payload: election}))
+      )
+    },
+    {functional: true});
+
+  loadParties$ = createEffect(
+    (actions$ = inject(Actions), electionService = inject(ElectionService)) => {
+      return actions$.pipe(
+        ofType(loadPartiesAction),
+        switchMap((action) => electionService.fetchParties(action.payload)),
+        map(parties => loadPartiesFinishedAction({payload: parties}))
       )
     },
     {functional: true});
