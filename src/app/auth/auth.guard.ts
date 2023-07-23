@@ -15,7 +15,7 @@ export class AppAuthGuard extends KeycloakAuthGuard {
 
   async isAccessAllowed(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean | UrlTree> {
     // Force the user to log in if currently unauthenticated.
-    if (!this.authenticated) {
+    if (!this.authenticated || this.keycloak.isTokenExpired()) {
       await this.keycloak.login({
         redirectUri: window.location.origin + state.url,
       });
@@ -26,7 +26,7 @@ export class AppAuthGuard extends KeycloakAuthGuard {
 
     let granted: boolean;
 
-    // Allow the user to to proceed if no additional roles are required to access the route.
+    // Allow the user to proceed if no additional roles are required to access the route.
     if (!(requiredRoles instanceof Array) || requiredRoles.length === 0) {
       granted = true;
       return granted;
