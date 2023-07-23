@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DEFAULT_ELECTION, Election} from "../model/election";
 import {KeyValue} from "@angular/common";
 import {Party} from "../model/party";
@@ -20,7 +20,8 @@ export class ElectionComponent implements OnInit {
   form: FormGroup;
   overallResults: FormGroup;
   constituencyResults: FormGroup;
-
+  @Output()
+  readonly valueChanges: EventEmitter<any> = new EventEmitter<any>();
   constructor(private fb: FormBuilder) {
     this.overallResults = this.fb.group({});
     this.constituencyResults = this.fb.group({});
@@ -133,5 +134,8 @@ export class ElectionComponent implements OnInit {
           constituencyFormGroup);
       }
     }
+    this.form.valueChanges.subscribe({
+      next: value => this.valueChanges.emit(value)
+    });
   }
 }

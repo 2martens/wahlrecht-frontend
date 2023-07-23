@@ -6,7 +6,7 @@
       </div>
     </ng-template>
     <ng-container *ngIf="(viewModel$ | async) as data; else spinner">
-      <app-election [viewModel]="data"></app-election>
+      <app-election [viewModel]="data" (valueChanges)="onValueChanges($event)"></app-election>
     </ng-container>
   </div>
 </div>

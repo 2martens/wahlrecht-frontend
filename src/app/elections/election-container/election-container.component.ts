@@ -90,4 +90,8 @@ export class ElectionContainerComponent implements OnInit {
       this.store.dispatch(loadPartiesAction({payload: name}));
     }
   }
+
+  onValueChanges(event: any) {
+    console.debug(event);
+  }
 }
