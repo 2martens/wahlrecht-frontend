@@ -1,5 +1,5 @@
 export enum VotingThreshold {
-  NONE,
-  THREE,
-  FIVE
+  NONE = "0%",
+  THREE = "3%",
+  FIVE = "5%",
 }
