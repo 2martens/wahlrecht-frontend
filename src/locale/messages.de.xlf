@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="8410191074917777706" datatype="html">
+        <source>Electoral Law for the Hamburg district elections</source>
+        <target>Wahlrecht für die Hamburger Bezirkswahlen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <note priority="1" from="description">page title</note>
+      </trans-unit>
+      <trans-unit id="2577982713334423300" datatype="html">
+        <source> Welcome to the Electoral Law application. This application allows you to view stored elections and their results in Hamburg. Furthermore, you can play around in a what-if mode to see how vote changes affect the result. </source>
+        <target> Willkommen bei der Wahlrecht-Anwendung. Diese Anwendung erlaubt dir, gespeicherte Wahlen Hamburgs und ihre Ergebnisse anzusehen. Ferner kannst du in einem What-if-Modus herumspielen, um zu sehen, wie andere Stimmergebnisse das Ergebnis beeinflussen. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">7,11</context>
+        </context-group>
+        <note priority="1" from="description">A welcome to users</note>
+        <note priority="1" from="meaning">welcome text</note>
+      </trans-unit>
+      <trans-unit id="4811913208087670332" datatype="html">
+        <source>What are district elections?</source>
+        <target>Was sind Bezirkswahlen?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">section title</note>
+      </trans-unit>
+      <trans-unit id="591462368233915495" datatype="html">
+        <source> Every five years, EU citizens in Hamburg can vote in the district election, parallel to the election of the European parliament. Hamburg has seven districts and each has an elected district assembly that is elected in these district elections. All citizens of the European Union, who have their permanent residence in one of the districts and are 16 years and older, can vote in the elections. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">14,21</context>
+        </context-group>
+        <note priority="1" from="description">An explanation of the district elections</note>
+        <note priority="1" from="meaning">explanation</note>
+      </trans-unit>
+      <trans-unit id="4099056752070361172" datatype="html">
+        <source>How do you vote?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <note priority="1" from="description">section title</note>
+      </trans-unit>
+      <trans-unit id="4074476494948245534" datatype="html">
+        <source> Every voter has a total of 10 votes. These are split between five votes in the constituency of the voter and five votes for the entire district. For the constituency vote, the five votes can be allocated to a single candidate or spread between multiple candidates. The overall district votes can be given to one candidate or one party or spread between candidates and/or parties. This type of vote allocation leads to unpredictable allocation of the seats of one party to its candidates; after all, the vote count of each candidate matters. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">24,32</context>
+        </context-group>
+        <note priority="1" from="description">An explanation how the vote can be cast</note>
+        <note priority="1" from="meaning">explanation</note>
+      </trans-unit>
+      <trans-unit id="4063468316741669639" datatype="html">
+        <source>How are the winners calculated?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <note priority="1" from="description">section title</note>
+      </trans-unit>
+      <trans-unit id="614133508112125508" datatype="html">
+        <source> This is the tricky part. Roughly, the calculation follows this order: (1) filter out parties that did not pass the voting threshold of 3%, (2) calculate the number of seats of remaining parties, (3) calculate elected candidates in constituencies, (4) calculate elected candidates district-wide. The purpose of this application is to help you understand this calculation. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/dashboard/dashboard.component.html</context>
+          <context context-type="linenumber">35,40</context>
+        </context-group>
+        <note priority="1" from="description">An explanation how the results lead to the elected candidates</note>
+        <note priority="1" from="meaning">explanation</note>
+      </trans-unit>
+      <trans-unit id="8889535199141263248" datatype="html">
+        <source>Elections</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/elections/landingpage/landing-page.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+        <note priority="1" from="description">page title</note>
+      </trans-unit>
+      <trans-unit id="3164042050176092352" datatype="html">
+        <source>You are not logged in which prevents data from loading</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/messages/messages.service.ts</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3621365427297958895" datatype="html">
+        <source>You don&apos;t have sufficient authorization to view the data</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/messages/messages.service.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8030424428239915087" datatype="html">
+        <source>An internal server error occurred. Sorry for the inconvenience.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/messages/messages.service.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8152446840184622740" datatype="html">
+        <source>An unknown error occurred. Sorry for the inconvenience.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/messages/messages.service.ts</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4330763172337088682" datatype="html">
+        <source>Menu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+        <note priority="1" from="description">Title of the sidebar menu</note>
+        <note priority="1" from="meaning">title</note>
+      </trans-unit>
+      <trans-unit id="7031178590089074927" datatype="html">
+        <source>Elections</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <note priority="1" from="description">The name of the elections page</note>
+        <note priority="1" from="meaning">link name</note>
+      </trans-unit>
+      <trans-unit id="7866051700047887455" datatype="html">
+        <source>Electoral Law</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <note priority="1" from="description">The application title in the toolbar</note>
+        <note priority="1" from="meaning">application title</note>
+      </trans-unit>
+      <trans-unit id="2454050363478003966" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
