@@ -12,12 +12,15 @@ import { ElectionComponent } from './election/election.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatInputModule} from "@angular/material/input";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ElectionContainerComponent } from './election-container/election-container.component';
 
 
 @NgModule({
   declarations: [
     LandingPageComponent,
-    ElectionComponent
+    ElectionComponent,
+    ElectionContainerComponent
   ],
   imports: [
     CommonModule,
@@ -29,6 +32,8 @@ import {MatInputModule} from "@angular/material/input";
     MatFormFieldModule,
     MatTabsModule,
     MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   exports: [
     LandingPageComponent

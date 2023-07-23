@@ -1,23 +1,29 @@
-import {Election} from "../model/election";
+import {DEFAULT_ELECTION, Election} from "../model/election";
 import {
-  loadAllElectionsFinishedAction, loadElectionResultFinishedAction, loadPartiesFinishedAction,
-  loadSingleElectionFinishedAction
+  loadAllElectionsFinishedAction,
+  loadElectionResultFinishedAction,
+  loadPartiesFinishedAction,
+  loadSingleElectionFinishedAction,
+  modifyElectionResultAction
 } from "./elections.actions";
 import {createReducer, on} from "@ngrx/store";
-import {ElectionResult} from "../model/election-result";
+import {DEFAULT_RESULT, ElectionResult} from "../model/election-result";
 import {Party} from "../model/party";
+import {VotingResult} from "../model/voting-result";
 
 export interface ReducerElectionsState {
   items: Election[];
-  selectedItem: Election | undefined;
-  selectedElectionResult: ElectionResult | undefined;
+  selectedItem: Election;
+  originalElectionResult: ElectionResult;
+  modifiedElectionResult: ElectionResult;
   selectedParties: Party[];
 }
 
 export const initialState: ReducerElectionsState = {
   items: [],
-  selectedItem: undefined,
-  selectedElectionResult: undefined,
+  selectedItem: DEFAULT_ELECTION,
+  originalElectionResult: DEFAULT_RESULT,
+  modifiedElectionResult: DEFAULT_RESULT,
   selectedParties: [],
 };
 
@@ -36,7 +42,25 @@ export const electionsReducer = createReducer(
   on(loadElectionResultFinishedAction, (state,
                                         action) => ({
     ...state,
-    selectedElectionResult: action.payload
+    originalElectionResult: action.payload,
+    modifiedElectionResult: {
+      constituencyResults: mapConstituencyResults(action.payload.constituencyResults),
+      electionName: action.payload.electionName,
+      overallResults: action.payload.overallResults.map(votingResult => {
+        return {...votingResult}
+      })
+    }
+  })),
+  on(modifyElectionResultAction, (state,
+                                        action) => ({
+    ...state,
+    modifiedElectionResult: {
+      constituencyResults: mapConstituencyResults(action.payload.constituencyResults),
+      electionName: action.payload.electionName,
+      overallResults: action.payload.overallResults.map(votingResult => {
+        return {...votingResult}
+      })
+    }
   })),
   on(loadPartiesFinishedAction, (state,
                                         action) => ({
@@ -44,3 +68,13 @@ export const electionsReducer = createReducer(
     selectedParties: [...action.payload]
   }))
 );
+
+function mapConstituencyResults(results: { [name: string]: VotingResult[] }): { [name: string]: VotingResult[] } {
+  const result: { [name: string]: VotingResult[] } = {};
+  for (const number in results) {
+    result[number] = results[number].map(votingResult => {
+      return {...votingResult}
+    });
+  }
+  return result;
+}

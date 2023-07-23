@@ -33,10 +33,16 @@ export const selectedElection = () => createSelector(
     state.elections.selectedItem
 );
 
-export const selectedElectionResult = () => createSelector(
+export const originalElectionResult = () => createSelector(
   getElectionsFeatureState,
   (state: ElectionsState) =>
-    state.elections.selectedElectionResult
+    state.elections.originalElectionResult
+);
+
+export const modifiedElectionResult = () => createSelector(
+  getElectionsFeatureState,
+  (state: ElectionsState) =>
+    state.elections.modifiedElectionResult
 );
 
 export const selectedParties = () => createSelector(

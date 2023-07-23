@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {ElectionsState, selectedElection, selectedElectionResult, selectedParties} from "../store";
-import {Store} from "@ngrx/store";
-import {loadElectionResultAction, loadPartiesAction, loadSingleElectionAction} from "../store/elections.actions";
-import {map, Observable, of} from "rxjs";
-import {Election} from "../model/election";
-import {ElectionResult} from "../model/election-result";
+import {Component, Input, OnInit} from '@angular/core';
+import {DEFAULT_ELECTION, Election} from "../model/election";
 import {KeyValue} from "@angular/common";
 import {Party} from "../model/party";
 import {VotingResult} from "../model/voting-result";
 import {Constituency} from "../model/constituency";
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {
+  DEFAULT_MODIFIED_RESULT,
+  ModifiedElectionResult,
+  ViewModel
+} from "../election-container/election-container.component";
 
 @Component({
   selector: 'app-election',
@@ -17,79 +17,121 @@ import {Constituency} from "../model/constituency";
   styleUrls: ['./election.component.scss']
 })
 export class ElectionComponent implements OnInit {
-  election$: Observable<Election|undefined> = of();
-  electionResult$: Observable<ElectionResult|undefined> = of();
-  parties$: Observable<Map<string, Party>> = of(new Map<string, Party>());
+  form: FormGroup;
+  overallResults: FormGroup;
+  constituencyResults: FormGroup;
 
-  constructor(private route: ActivatedRoute,
-              private store: Store<ElectionsState>) {
-    this.election$ = this.store.select(selectedElection());
-    this.electionResult$ = this.store.select(selectedElectionResult());
-    this.parties$ = this.store.select(selectedParties())
-      .pipe(
-        map(parties => {
-          const map = new Map<string, Party>();
-          parties.forEach((party) => map.set(party.abbreviation, party));
-          return map;
-        })
-      );
+  constructor(private fb: FormBuilder) {
+    this.overallResults = this.fb.group({});
+    this.constituencyResults = this.fb.group({});
+    this.form = this.fb.group({
+      overallResults: this.overallResults,
+      constituencyResults: this.constituencyResults
+    });
+    this._viewModel = {
+      election: DEFAULT_ELECTION,
+      electionResult: DEFAULT_MODIFIED_RESULT,
+      parties: new Map<string, Party>()
+    };
+  }
+
+  _viewModel: ViewModel;
+
+  get viewModel() {
+    return this._viewModel;
+  }
+
+  @Input()
+  set viewModel(data: ViewModel) {
+    this._viewModel = data;
   }
 
   ngOnInit() {
-    const name = this.route.snapshot.paramMap.get("name");
-    if (name != null) {
-      this.store.dispatch(loadSingleElectionAction({payload: name}));
-      this.store.dispatch(loadElectionResultAction({payload: name}));
-      this.store.dispatch(loadPartiesAction({payload: name}));
-    }
+    this.setUpForm(this.viewModel.election, this.viewModel.electionResult);
   }
 
-  keyAscOrder = (a: KeyValue<string,number>, b: KeyValue<string,number>): number => {
+  keyAscOrder = (a: KeyValue<string, number>, b: KeyValue<string, number>): number => {
     return +a.key < +b.key ? -1 : (+a.key > +b.key ? 1 : 0);
   }
 
-  getCandidateNameOverall(abbreviation: string, position: number): Observable<string|undefined> {
-    return this.parties$.pipe(
-      map(map => map.get(abbreviation)),
-      map(party => party?.overallNomination),
-      map(nomination => nomination?.candidates),
-      map(candidates => candidates?.at(position - 1)),
-      map(candidate => candidate?.name)
-    );
+  getCandidateNameOverall(abbreviation: string, position: number): string | undefined {
+    return this.viewModel.parties.get(abbreviation)?.overallNomination
+      .candidates.at(position - 1)?.name;
   }
 
-  getConstituencyResults(constituencyId: number): Observable<VotingResult[]|undefined> {
-    return this.electionResult$.pipe(
-      map(result => result != null
-        ? result.constituencyResults
-        : {}),
-      map(constituencyResults => constituencyResults != null
-        ? constituencyResults[constituencyId]
-        : []),
-    );
+  getConstituencyResults(constituencyId: number): VotingResult[] | undefined {
+    return this.viewModel.electionResult.constituencyResults.get(`${constituencyId}`);
   }
 
-  getCandidateNameConstituency(constituencyNumber: number, abbreviation: string, position: number): Observable<string|undefined> {
-    return this.parties$.pipe(
-      map(map => map.get(abbreviation)),
-      map(party => party?.constituencyNominations),
-      map(nominations => nominations != null
-        ? nominations[constituencyNumber]
-        : null),
-      map(nomination => nomination?.candidates),
-      map(candidates => candidates?.at(position - 1)),
-      map(candidate => candidate?.name)
-    );
+  getCandidateNameConstituency(constituencyNumber: number, abbreviation: string, position: number): string | undefined {
+    return this.viewModel.parties.get(abbreviation)?.constituencyNominations[constituencyNumber]
+      .candidates.at(position - 1)?.name;
   }
 
-  getConstituencies(): Observable<Constituency[]> {
-    return this.election$.pipe(
-      map(election => election != null ? election.constituencies : []),
-      map(constituencies => [...constituencies].sort(this.sortConstituencies))
-    );
+  getConstituencies(): Constituency[] {
+    return [...this.viewModel.election.constituencies].sort(this.sortConstituencies);
   }
 
   sortConstituencies(a: Constituency, b: Constituency): number {
     return a.number - b.number;
+  }
+
+  private setUpForm(election: Election, electionResult: ModifiedElectionResult) {
+    const constituencies = new Map<number, Constituency>();
+    election?.constituencies.forEach(constituency => {
+      constituencies.set(constituency.number, constituency);
+    })
+    this.overallResults = this.fb.group({});
+    this.constituencyResults = this.fb.group({});
+    this.form = this.fb.group({
+      overallResults: this.overallResults,
+      constituencyResults: this.constituencyResults
+    });
+    for (const votingResult of electionResult.overallResults) {
+      const votesPerPosition = this.fb.array<FormControl<number | null>>([]);
+      votingResult.votesPerPosition
+      const formGroup = this.fb.group({
+        votesOnNomination: this.fb.control<number>(votingResult.votesOnNomination),
+        votesThroughHealing: this.fb.control<number>(votingResult.votesThroughHealing),
+        votesPerPosition: votesPerPosition
+      });
+      const map = new Map<string, number>();
+      for (const number in votingResult.votesPerPosition) {
+        map.set(number, votingResult.votesPerPosition[number]);
+      }
+      const entries = [...map.entries()]
+        .sort((a, b) => {
+          return +a[0] - +b[0];
+        })
+        .map(entry => entry[0]);
+      for (const number of entries) {
+        votesPerPosition.push(this.fb.control<number>(map.get(number) || 0));
+      }
+
+      this.overallResults.addControl(votingResult.partyAbbreviation, formGroup);
+    }
+    for (const constituencyNumber of electionResult.constituencyResults.keys()) {
+      const constituencyFormGroup = this.fb.group({});
+      const votingResults = electionResult.constituencyResults.get(constituencyNumber);
+      if (votingResults == null) {
+        continue;
+      }
+      for (const votingResult of votingResults) {
+        const votesPerPosition = this.fb.array<FormControl<number | null>>([]);
+        const formGroup = this.fb.group({
+          votesPerPosition: votesPerPosition
+        });
+        for (const number in votingResult.votesPerPosition) {
+          votesPerPosition.push(this.fb.control<number>(votingResult.votesPerPosition[number]));
+        }
+        constituencyFormGroup.addControl(votingResult.partyAbbreviation, formGroup);
+      }
+      const constituency = constituencies.get(+constituencyNumber);
+      if (constituency != null) {
+        this.constituencyResults.addControl(
+          constituency.name,
+          constituencyFormGroup);
+      }
+    }
   }
 }

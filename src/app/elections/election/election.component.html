@@ -1,57 +1,56 @@
-<script src="election.component.ts"></script>
-<div class="row">
-  <div class="mainContentColumn">
-    <ng-template #spinner>
-      <div class="row">
-        <mat-spinner></mat-spinner>
-      </div>
-    </ng-template>
-    <ng-container *ngIf="(election$ | async) !== undefined; else spinner">
-      <h1 class="mat-headline-5">{{(election$ | async)?.name}}</h1>
-      <form>
-        <mat-tab-group>
-          <mat-tab i18n-label label="Overall results">
-
-            <mat-tab-group>
-              <mat-tab *ngFor="let overallResult of (electionResult$ | async)?.overallResults"
-                       label="{{overallResult.partyAbbreviation}}">
-                <mat-form-field>
-                  <mat-label i18n>Votes on nomination</mat-label>
-                  <input matInput type="number" value="{{overallResult.votesOnNomination}}">
-                </mat-form-field>
-                <mat-form-field>
-                  <mat-label i18n>Votes through healing</mat-label>
-                  <input matInput type="number" value="{{overallResult.votesThroughHealing}}">
-                </mat-form-field>
-                <mat-form-field *ngFor="let entry of overallResult.votesPerPosition | keyvalue: keyAscOrder">
+<h1 class="mat-headline-5">{{viewModel.election.name}}</h1>
+<form [formGroup]="form">
+  <mat-tab-group>
+    <mat-tab i18n-label label="Overall results"
+             formGroupName="overallResults">
+      <mat-tab-group>
+        <mat-tab *ngFor="let overallResult of viewModel.electionResult.overallResults"
+                 label="{{overallResult.partyAbbreviation}}"
+                 formGroupName="{{overallResult.partyAbbreviation}}">
+          <mat-form-field>
+            <mat-label i18n>Votes on nomination</mat-label>
+            <input matInput type="number" formControlName="votesOnNomination"
+                   value="{{overallResult.votesOnNomination}}">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label i18n>Votes through healing</mat-label>
+            <input matInput type="number" formControlName="votesThroughHealing"
+                   value="{{overallResult.votesThroughHealing}}">
+          </mat-form-field>
+          <div formArrayName="votesPerPosition">
+            <mat-form-field *ngFor="let entry of overallResult.votesPerPosition | keyvalue: keyAscOrder; let i = index">
+              <mat-label>{{entry.key}}
+                : {{getCandidateNameOverall(overallResult.partyAbbreviation, +entry.key)}}</mat-label>
+              <input matInput type="number" value="{{entry.value}}" [formControlName]="i">
+            </mat-form-field>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-tab>
+    <mat-tab i18n-label label="Constituency results"
+             formGroupName="constituencyResults">
+      <mat-tab-group>
+        <mat-tab *ngFor="let constituency of getConstituencies()"
+                 label="{{constituency.name}}"
+                 formGroupName="{{constituency.name}}">
+          <mat-tab-group>
+            <mat-tab
+              *ngFor="let constituencyResult of getConstituencyResults(constituency.number)"
+              label="{{constituencyResult.partyAbbreviation}}"
+              formGroupName="{{constituencyResult.partyAbbreviation}}">
+              <div formArrayName="votesPerPosition">
+                <mat-form-field
+                  *ngFor="let entry of constituencyResult.votesPerPosition | keyvalue: keyAscOrder; let i = index">
                   <mat-label>{{entry.key}}
-                    : {{getCandidateNameOverall(overallResult.partyAbbreviation, +entry.key) | async}}</mat-label>
-                  <input matInput type="number" value="{{entry.value}}">
+                    : {{getCandidateNameConstituency(constituency.number, constituencyResult.partyAbbreviation, +entry.key)}}
+                  </mat-label>
+                  <input matInput type="number" value="{{entry.value}}" [formControlName]="i">
                 </mat-form-field>
-              </mat-tab>
-            </mat-tab-group>
-          </mat-tab>
-          <mat-tab i18n-label label="Constituency results">
-            <mat-tab-group>
-              <mat-tab *ngFor="let constituency of getConstituencies()|async" label="{{constituency.name}}">
-                <mat-tab-group>
-                  <mat-tab
-                    *ngFor="let constituencyResult of getConstituencyResults(constituency.number)|async"
-                    label="{{constituencyResult.partyAbbreviation}}">
-                    <mat-form-field *ngFor="let entry of constituencyResult.votesPerPosition | keyvalue: keyAscOrder">
-                      <mat-label>{{entry.key}}
-                        : {{getCandidateNameConstituency(constituency.number, constituencyResult.partyAbbreviation, +entry.key) | async}}
-                      </mat-label>
-                      <input matInput type="number" value="{{entry.value}}">
-                    </mat-form-field>
-                  </mat-tab>
-                </mat-tab-group>
-              </mat-tab>
-            </mat-tab-group>
-          </mat-tab>
-
-        </mat-tab-group>
-      </form>
-    </ng-container>
-  </div>
-</div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-tab>
+  </mat-tab-group>
+</form>

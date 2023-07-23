@@ -8,3 +8,11 @@ export interface Election {
   votingThreshold: VotingThreshold;
   constituencies: Constituency[];
 }
+
+export const DEFAULT_ELECTION: Election = {
+  name: "",
+  day: "",
+  totalNumberOfSeats: 0,
+  votingThreshold: VotingThreshold.NONE,
+  constituencies: []
+}

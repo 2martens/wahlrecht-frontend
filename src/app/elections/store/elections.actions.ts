@@ -15,6 +15,8 @@ export enum ActionTypes {
 
   LoadParties = '[Elections] Load Parties',
   LoadPartiesFinished = '[Elections] Load Parties Finished',
+
+  ModifyElectionResult = '[Elections] Modify ElectionResult',
 }
 
 export const loadAllElectionsAction = createAction(
@@ -33,7 +35,7 @@ export const loadSingleElectionAction = createAction(
 
 export const loadSingleElectionFinishedAction = createAction(
     ActionTypes.LoadSingleElectionFinished,
-    props<{payload: Election|undefined}>()
+    props<{payload: Election}>()
 );
 
 export const loadElectionResultAction = createAction(
@@ -43,7 +45,7 @@ export const loadElectionResultAction = createAction(
 
 export const loadElectionResultFinishedAction = createAction(
   ActionTypes.LoadElectionResultFinished,
-  props<{payload: ElectionResult|undefined}>()
+  props<{payload: ElectionResult}>()
 );
 
 export const loadPartiesAction = createAction(
@@ -54,4 +56,9 @@ export const loadPartiesAction = createAction(
 export const loadPartiesFinishedAction = createAction(
   ActionTypes.LoadPartiesFinished,
   props<{payload: Party[]}>()
+);
+
+export const modifyElectionResultAction = createAction(
+  ActionTypes.ModifyElectionResult,
+  props<{payload: ElectionResult}>()
 );

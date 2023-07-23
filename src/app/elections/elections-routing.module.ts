@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {LandingPageComponent} from "./landingpage/landing-page.component";
 import {AppAuthGuard} from "../auth/auth.guard";
-import {ElectionComponent} from "./election/election.component";
+import {ElectionContainerComponent} from "./election-container/election-container.component";
 
 const routes: Routes = [
   {
@@ -12,8 +12,9 @@ const routes: Routes = [
   },
   {
     path: 'election/:name',
-    component: ElectionComponent,
+    component: ElectionContainerComponent,
     canActivate: [AppAuthGuard],
+    resolve: []
   }
 ];
 

@@ -5,3 +5,9 @@ export interface ElectionResult {
   overallResults: VotingResult[],
   constituencyResults: {[name: string]: VotingResult[]};
 }
+
+export const DEFAULT_RESULT: ElectionResult = {
+  electionName: "",
+  overallResults: [],
+  constituencyResults: {}
+}
