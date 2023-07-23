@@ -1,5 +1,5 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {Subscription, tap} from "rxjs";
+import {Subscription} from "rxjs";
 import {Store} from "@ngrx/store";
 import {allElections, ElectionsState} from "../store";
 import {loadAllElectionsAction} from "../store/elections.actions";
