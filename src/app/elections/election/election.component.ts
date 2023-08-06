@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewRef} from '@angular/core';
 import {DEFAULT_ELECTION, Election} from "../model/election";
 import {KeyValue} from "@angular/common";
 import {Party} from "../model/party";
@@ -25,7 +25,10 @@ export class ElectionComponent implements OnInit {
   overallResults: FormGroup;
   constituencyResults: FormGroup;
   resultColumns: string[] = ['party', 'seats'];
-  seatsPerParty: {party: Party, seats: number}[] = [];
+  seatsPerParty: { party: Party, seats: number }[] = [];
+  showSpinner = false;
+  @ViewChild('calculateButton') calculateButton: HTMLButtonElement | undefined;
+
   @Output()
   readonly valueChanges: EventEmitter<FormElectionResult> = new EventEmitter<FormElectionResult>();
   @Output()
@@ -65,6 +68,10 @@ export class ElectionComponent implements OnInit {
         })
       }
       this.seatsPerParty = newSeatAllocations;
+      this.showSpinner = false;
+      if (this.calculateButton != undefined) {
+        this.calculateButton.disabled = false;
+      }
     }
   }
 
@@ -120,6 +127,10 @@ export class ElectionComponent implements OnInit {
       electionName: modifiedElectionResult.electionName,
       constituencyResults: result,
       overallResults: modifiedElectionResult.overallResults
+    }
+    this.showSpinner = true;
+    if (this.calculateButton != undefined) {
+      this.calculateButton.disabled = true;
     }
     this.calculate.emit(electionResult);
   }

@@ -1,1 +1,7 @@
+@use '../../../sass/mixins';
 
+.spinner {
+  height: 20px !important;
+  width: 20px !important;
+  display: inline-block;
+}

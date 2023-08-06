@@ -14,7 +14,11 @@
   <tr mat-row *matRowDef="let row; columns: resultColumns"></tr>
 </table>
 
-<button mat-raised-button i18n (keyup.enter)="onCalculate()" (click)="onCalculate()">Calculate</button>
+<button mat-raised-button i18n #calculateButton (keyup.enter)="onCalculate()" (click)="onCalculate()">
+  <mat-spinner class="spinner" *ngIf="showSpinner"></mat-spinner>
+  Calculate
+</button>
+
 
 <form [formGroup]="form">
   <mat-tab-group>
