@@ -39,10 +39,10 @@
                    value="{{overallResult.votesThroughHealing}}">
           </mat-form-field>
           <div formArrayName="votesPerPosition">
-            <mat-form-field *ngFor="let entry of overallResult.votesPerPosition | keyvalue: keyAscOrder; let i = index">
+            <mat-form-field *ngFor="let entry of overallResult.votesPerPosition | keyvalue: keyAscOrder">
               <mat-label>{{entry.key}}
                 : {{getCandidateNameOverall(overallResult.partyAbbreviation, +entry.key)}}</mat-label>
-              <input matInput type="number" value="{{entry.value}}" [formControlName]="i">
+              <input matInput type="number" value="{{entry.value}}" [formControlName]="entry.key">
             </mat-form-field>
           </div>
         </mat-tab>
@@ -61,11 +61,11 @@
               formGroupName="{{constituencyResult.partyAbbreviation}}">
               <div formArrayName="votesPerPosition">
                 <mat-form-field
-                  *ngFor="let entry of constituencyResult.votesPerPosition | keyvalue: keyAscOrder; let i = index">
+                  *ngFor="let entry of constituencyResult.votesPerPosition | keyvalue: keyAscOrder">
                   <mat-label>{{entry.key}}
                     : {{getCandidateNameConstituency(constituency.number, constituencyResult.partyAbbreviation, +entry.key)}}
                   </mat-label>
-                  <input matInput type="number" value="{{entry.value}}" [formControlName]="i">
+                  <input matInput type="number" value="{{entry.value}}" [formControlName]="entry.key">
                 </mat-form-field>
               </div>
             </mat-tab>
