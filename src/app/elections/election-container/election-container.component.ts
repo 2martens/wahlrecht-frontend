@@ -6,8 +6,14 @@ import {VotingResult} from "../model/voting-result";
 import {Store} from "@ngrx/store";
 import {ElectionsState, modifiedElectionResult, selectedElection, selectedParties} from "../store";
 import {ActivatedRoute} from "@angular/router";
-import {loadElectionResultAction, loadPartiesAction, loadSingleElectionAction} from "../store/elections.actions";
-import {DEFAULT_RESULT} from "../model/election-result";
+import {
+  loadElectionResultAction,
+  loadPartiesAction,
+  loadSingleElectionAction,
+  modifyElectionResultAction
+} from "../store/elections.actions";
+import {DEFAULT_RESULT, ElectionResult} from "../model/election-result";
+import {FormElectionResult} from "../model/form-election-result";
 
 export interface ModifiedElectionResult {
   electionName: string;
@@ -91,7 +97,7 @@ export class ElectionContainerComponent implements OnInit {
     }
   }
 
-  onValueChanges(event: any) {
-    console.debug(event);
+  onValueChanges(event: FormElectionResult) {
+    this.store.dispatch(modifyElectionResultAction({payload: event}));
   }
 }

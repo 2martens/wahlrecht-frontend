@@ -10,6 +10,8 @@ import {
   ModifiedElectionResult,
   ViewModel
 } from "../election-container/election-container.component";
+import {ElectionResult} from "../model/election-result";
+import {FormElectionResult} from "../model/form-election-result";
 
 @Component({
   selector: 'app-election',
@@ -21,7 +23,7 @@ export class ElectionComponent implements OnInit {
   overallResults: FormGroup;
   constituencyResults: FormGroup;
   @Output()
-  readonly valueChanges: EventEmitter<any> = new EventEmitter<any>();
+  readonly valueChanges: EventEmitter<FormElectionResult> = new EventEmitter<FormElectionResult>();
   constructor(private fb: FormBuilder) {
     this.overallResults = this.fb.group({});
     this.constituencyResults = this.fb.group({});
@@ -57,7 +59,7 @@ export class ElectionComponent implements OnInit {
 
   getCandidateNameOverall(abbreviation: string, position: number): string | undefined {
     return this.viewModel.parties.get(abbreviation)?.overallNomination
-      .candidates.at(position - 1)?.name;
+      ?.candidates.at(position - 1)?.name;
   }
 
   getConstituencyResults(constituencyId: number): VotingResult[] | undefined {
@@ -90,11 +92,13 @@ export class ElectionComponent implements OnInit {
     });
     for (const votingResult of electionResult.overallResults) {
       const votesPerPosition = this.fb.array<FormControl<number | null>>([]);
-      votingResult.votesPerPosition
       const formGroup = this.fb.group({
         votesOnNomination: this.fb.control<number>(votingResult.votesOnNomination),
         votesThroughHealing: this.fb.control<number>(votingResult.votesThroughHealing),
-        votesPerPosition: votesPerPosition
+        votesPerPosition: votesPerPosition,
+        electionName: this.fb.control<string>(votingResult.electionName),
+        partyAbbreviation: this.fb.control<string>(votingResult.partyAbbreviation),
+        nominationName: this.fb.control<string>(votingResult.nominationName),
       });
       const map = new Map<string, number>();
       for (const number in votingResult.votesPerPosition) {
@@ -120,7 +124,10 @@ export class ElectionComponent implements OnInit {
       for (const votingResult of votingResults) {
         const votesPerPosition = this.fb.array<FormControl<number | null>>([]);
         const formGroup = this.fb.group({
-          votesPerPosition: votesPerPosition
+          votesPerPosition: votesPerPosition,
+          electionName: this.fb.control<string>(votingResult.electionName),
+          partyAbbreviation: this.fb.control<string>(votingResult.partyAbbreviation),
+          nominationName: this.fb.control<string>(votingResult.nominationName),
         });
         for (const number in votingResult.votesPerPosition) {
           votesPerPosition.push(this.fb.control<number>(votingResult.votesPerPosition[number]));

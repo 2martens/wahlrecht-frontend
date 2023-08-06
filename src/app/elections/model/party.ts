@@ -4,6 +4,6 @@ export interface Party {
   electionName: string;
   abbreviation: string;
   name: string;
-  overallNomination: Nomination;
+  overallNomination?: Nomination;
   constituencyNominations: {[name: string]: Nomination};
 }

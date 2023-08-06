@@ -55,11 +55,9 @@ export const electionsReducer = createReducer(
                                         action) => ({
     ...state,
     modifiedElectionResult: {
-      constituencyResults: mapConstituencyResults(action.payload.constituencyResults),
-      electionName: action.payload.electionName,
-      overallResults: action.payload.overallResults.map(votingResult => {
-        return {...votingResult}
-      })
+      constituencyResults: mapConstituencyResultsForm(action.payload.constituencyResults),
+      electionName: state.originalElectionResult.electionName,
+      overallResults: mapOverallResultsForm(action.payload.overallResults)
     }
   })),
   on(loadPartiesFinishedAction, (state,
@@ -75,6 +73,28 @@ function mapConstituencyResults(results: { [name: string]: VotingResult[] }): { 
     result[number] = results[number].map(votingResult => {
       return {...votingResult}
     });
+  }
+  return result;
+}
+
+function mapConstituencyResultsForm(results: { [name: string]: {[name: string]: VotingResult} }): { [name: string]: VotingResult[] } {
+  const result: { [name: string]: VotingResult[] } = {};
+  for (const number in results) {
+    result[number] = []
+    const constituencyResult = results[number];
+    for (const abbreviation in constituencyResult) {
+      const partyResult = constituencyResult[abbreviation];
+      result[number].push({...partyResult, votesOnNomination: 0, votesThroughHealing: 0});
+    }
+  }
+  return result;
+}
+
+function mapOverallResultsForm(results: {[name: string]: VotingResult}) : VotingResult[] {
+  const result: VotingResult[] = [];
+  for (const number in results) {
+    const partyResult = results[number];
+    result.push({...partyResult});
   }
   return result;
 }

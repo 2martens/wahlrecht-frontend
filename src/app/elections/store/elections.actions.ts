@@ -2,6 +2,7 @@ import {createAction, props} from "@ngrx/store";
 import {Election} from "../model/election";
 import {ElectionResult} from "../model/election-result";
 import {Party} from "../model/party";
+import {FormElectionResult} from "../model/form-election-result";
 
 export enum ActionTypes {
   LoadAllElections = '[Elections] Load All Elections',
@@ -17,6 +18,9 @@ export enum ActionTypes {
   LoadPartiesFinished = '[Elections] Load Parties Finished',
 
   ModifyElectionResult = '[Elections] Modify ElectionResult',
+
+  Calculate = '[Elections] Calculate',
+  CalculateFinished = '[Elections] Calculate Finished',
 }
 
 export const loadAllElectionsAction = createAction(
@@ -60,5 +64,14 @@ export const loadPartiesFinishedAction = createAction(
 
 export const modifyElectionResultAction = createAction(
   ActionTypes.ModifyElectionResult,
+  props<{payload: FormElectionResult}>()
+);
+
+export const calculateAction = createAction(
+  ActionTypes.Calculate,
   props<{payload: ElectionResult}>()
+);
+
+export const calculateFinishedAction = createAction(
+  ActionTypes.CalculateFinished
 );
