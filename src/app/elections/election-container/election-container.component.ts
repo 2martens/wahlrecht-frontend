@@ -4,9 +4,10 @@ import {DEFAULT_ELECTION, Election} from "../model/election";
 import {Party} from "../model/party";
 import {VotingResult} from "../model/voting-result";
 import {Store} from "@ngrx/store";
-import {ElectionsState, modifiedElectionResult, selectedElection, selectedParties} from "../store";
+import {electedCandidates, ElectionsState, modifiedElectionResult, selectedElection, selectedParties} from "../store";
 import {ActivatedRoute} from "@angular/router";
 import {
+  calculateAction,
   loadElectionResultAction,
   loadPartiesAction,
   loadSingleElectionAction,
@@ -14,6 +15,7 @@ import {
 } from "../store/elections.actions";
 import {DEFAULT_RESULT, ElectionResult} from "../model/election-result";
 import {FormElectionResult} from "../model/form-election-result";
+import {DEFAULT_ELECTED, ElectedCandidates} from "../model/elected-candidates";
 
 export interface ModifiedElectionResult {
   electionName: string;
@@ -41,12 +43,17 @@ export interface ViewModel {
 export class ElectionContainerComponent implements OnInit {
   election$: Observable<Election>;
   electionResult$: Observable<ModifiedElectionResult>;
+  electedCandidates$: Observable<ElectedCandidates>;
   parties$: Observable<Map<string, Party>>;
   viewModel$: Observable<ViewModel|null>;
 
   constructor(private route: ActivatedRoute,
               private store: Store<ElectionsState>) {
     this.election$ = this.store.select<Election>(selectedElection());
+    this.electedCandidates$ = this.store.select<ElectedCandidates>(electedCandidates())
+      .pipe(
+        filter(result => result != DEFAULT_ELECTED)
+      );
     this.electionResult$ = this.store.select(modifiedElectionResult())
       .pipe(
         filter(result => result != DEFAULT_RESULT),
@@ -99,5 +106,9 @@ export class ElectionContainerComponent implements OnInit {
 
   onValueChanges(event: FormElectionResult) {
     this.store.dispatch(modifyElectionResultAction({payload: event}));
+  }
+
+  onCalculate(event: ElectionResult) {
+    this.store.dispatch(calculateAction({payload: event}));
   }
 }

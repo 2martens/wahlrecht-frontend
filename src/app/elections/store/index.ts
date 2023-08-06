@@ -50,3 +50,8 @@ export const selectedParties = () => createSelector(
   (state: ElectionsState) =>
     state.elections.selectedParties
 );
+
+export const electedCandidates = () => createSelector(
+  getElectionsFeatureState,
+  (state: ElectionsState) => state.elections.electedCandidates
+)

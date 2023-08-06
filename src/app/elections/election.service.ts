@@ -3,17 +3,18 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../environments/environment";
 import {Election} from "./model/election";
 import {catchError, Observable, of} from "rxjs";
-import {Store} from "@ngrx/store";
 import {MessagesService} from "../messages/messages.service";
 import {MessageType} from "../messages/model/message-type";
 import {ElectionResult} from "./model/election-result";
 import {Party} from "./model/party";
+import {ElectedCandidates} from "./model/elected-candidates";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ElectionService {
 
+  private calculateURL = environment.backendURL + '/calculate';
   private electionsURL = environment.backendURL + '/elections';
   private electionResultURL = environment.backendURL + '/electionResult/by-election-name/';
   private electionURL = environment.backendURL + '/elections/by-name/';
@@ -24,9 +25,14 @@ export class ElectionService {
   };
 
   constructor(private http: HttpClient,
-              private store: Store,
               private messageService: MessagesService) { }
 
+  calculateElectionResult(electionResult: ElectionResult): Observable<ElectedCandidates> {
+    return this.http.post<ElectedCandidates>(this.calculateURL, electionResult, this.httpOptions)
+      .pipe(
+        catchError(this.handleError<ElectedCandidates>('calculateElectionResult', undefined))
+      );
+  }
 
   fetchElections(): Observable<Election[]> {
     return this.http.get<Election[]>(this.electionsURL, this.httpOptions)

@@ -12,6 +12,8 @@ import {
 } from "../election-container/election-container.component";
 import {ElectionResult} from "../model/election-result";
 import {FormElectionResult} from "../model/form-election-result";
+import {ElectedCandidates} from "../model/elected-candidates";
+import {mapConstituencyResultsForm, mapOverallResultsForm} from "../store/elections.reducer";
 
 @Component({
   selector: 'app-election',
@@ -22,8 +24,13 @@ export class ElectionComponent implements OnInit {
   form: FormGroup;
   overallResults: FormGroup;
   constituencyResults: FormGroup;
+  resultColumns: string[] = ['party', 'seats'];
+  seatsPerParty: {party: Party, seats: number}[] = [];
   @Output()
   readonly valueChanges: EventEmitter<FormElectionResult> = new EventEmitter<FormElectionResult>();
+  @Output()
+  readonly calculate: EventEmitter<ElectionResult> = new EventEmitter<ElectionResult>();
+
   constructor(private fb: FormBuilder) {
     this.overallResults = this.fb.group({});
     this.constituencyResults = this.fb.group({});
@@ -38,7 +45,30 @@ export class ElectionComponent implements OnInit {
     };
   }
 
-  _viewModel: ViewModel;
+  private _electedCandidates: ElectedCandidates | null = null;
+
+  get electedCandidates(): ElectedCandidates | null {
+    return this._electedCandidates;
+  }
+
+  @Input() set electedCandidates(value: ElectedCandidates | null) {
+    this._electedCandidates = value;
+    if (value != null) {
+      const newSeatAllocations = [];
+      for (const partyAbbreviation in value.seatAllocation) {
+        if (!this.viewModel.parties.has(partyAbbreviation)) {
+          continue;
+        }
+        newSeatAllocations.push({
+          party: this.viewModel.parties.get(partyAbbreviation)!,
+          seats: value.seatAllocation[partyAbbreviation]
+        })
+      }
+      this.seatsPerParty = newSeatAllocations;
+    }
+  }
+
+  private _viewModel: ViewModel;
 
   get viewModel() {
     return this._viewModel;
@@ -77,6 +107,21 @@ export class ElectionComponent implements OnInit {
 
   sortConstituencies(a: Constituency, b: Constituency): number {
     return a.number - b.number;
+  }
+
+  onCalculate() {
+    let electionResult: ElectionResult | null;
+    const modifiedElectionResult = this.viewModel.electionResult;
+    const result: { [name: string]: VotingResult[] } = {};
+    for (const entry of modifiedElectionResult.constituencyResults.entries()) {
+      result[entry[0]] = entry[1];
+    }
+    electionResult = {
+      electionName: modifiedElectionResult.electionName,
+      constituencyResults: result,
+      overallResults: modifiedElectionResult.overallResults
+    }
+    this.calculate.emit(electionResult);
   }
 
   private setUpForm(election: Election, electionResult: ModifiedElectionResult) {
@@ -142,7 +187,20 @@ export class ElectionComponent implements OnInit {
       }
     }
     this.form.valueChanges.subscribe({
-      next: value => this.valueChanges.emit(value)
+      next: (value: {
+        overallResults: { [name: string]: VotingResult },
+        constituencyResults: { [name: string]: { [name: string]: VotingResult } }
+      }) => {
+        this.viewModel.electionResult.overallResults = mapOverallResultsForm(value.overallResults);
+        const map = new Map<string, VotingResult[]>();
+        const modifiedConstituencyResults = mapConstituencyResultsForm(value.constituencyResults);
+        for (const name in modifiedConstituencyResults) {
+          map.set(name, modifiedConstituencyResults[name]);
+        }
+        this.viewModel.electionResult.constituencyResults = map;
+
+        this.valueChanges.emit(value);
+      }
     });
   }
 }

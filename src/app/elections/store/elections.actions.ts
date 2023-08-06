@@ -3,6 +3,7 @@ import {Election} from "../model/election";
 import {ElectionResult} from "../model/election-result";
 import {Party} from "../model/party";
 import {FormElectionResult} from "../model/form-election-result";
+import {ElectedCandidates} from "../model/elected-candidates";
 
 export enum ActionTypes {
   LoadAllElections = '[Elections] Load All Elections',
@@ -73,5 +74,6 @@ export const calculateAction = createAction(
 );
 
 export const calculateFinishedAction = createAction(
-  ActionTypes.CalculateFinished
+  ActionTypes.CalculateFinished,
+  props<{payload: ElectedCandidates}>()
 );

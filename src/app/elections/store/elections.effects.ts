@@ -1,6 +1,7 @@
 import {inject, Injectable} from "@angular/core";
 import {ElectionService} from "../election.service";
 import {
+  calculateAction, calculateFinishedAction,
   loadAllElectionsAction,
   loadAllElectionsFinishedAction,
   loadElectionResultAction,
@@ -55,6 +56,16 @@ export class ElectionsEffects {
         ofType(loadPartiesAction),
         switchMap((action) => electionService.fetchParties(action.payload)),
         map(parties => loadPartiesFinishedAction({payload: parties}))
+      )
+    },
+    {functional: true});
+
+  calculateResult$ = createEffect(
+    (actions$ = inject(Actions), electionService = inject(ElectionService)) => {
+      return actions$.pipe(
+        ofType(calculateAction),
+        switchMap((action) => electionService.calculateElectionResult(action.payload)),
+        map(electedCandidates => calculateFinishedAction({payload: electedCandidates}))
       )
     },
     {functional: true});

@@ -14,6 +14,7 @@ import {MatTabsModule} from "@angular/material/tabs";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ElectionContainerComponent } from './election-container/election-container.component';
+import {MatButtonModule} from "@angular/material/button";
 
 
 @NgModule({
@@ -22,19 +23,20 @@ import { ElectionContainerComponent } from './election-container/election-contai
     ElectionComponent,
     ElectionContainerComponent
   ],
-  imports: [
-    CommonModule,
-    ElectionsRoutingModule,
-    StoreModule.forFeature(featureStateName, electionsReducers),
-    EffectsModule.forFeature([ElectionsEffects]),
-    MatTableModule,
-    MatProgressSpinnerModule,
-    MatFormFieldModule,
-    MatTabsModule,
-    MatInputModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        CommonModule,
+        ElectionsRoutingModule,
+        StoreModule.forFeature(featureStateName, electionsReducers),
+        EffectsModule.forFeature([ElectionsEffects]),
+        MatTableModule,
+        MatProgressSpinnerModule,
+        MatFormFieldModule,
+        MatTabsModule,
+        MatInputModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatButtonModule,
+    ],
   exports: [
     LandingPageComponent
   ]

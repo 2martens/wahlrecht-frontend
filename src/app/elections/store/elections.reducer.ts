@@ -1,5 +1,6 @@
 import {DEFAULT_ELECTION, Election} from "../model/election";
 import {
+  calculateFinishedAction,
   loadAllElectionsFinishedAction,
   loadElectionResultFinishedAction,
   loadPartiesFinishedAction,
@@ -10,12 +11,14 @@ import {createReducer, on} from "@ngrx/store";
 import {DEFAULT_RESULT, ElectionResult} from "../model/election-result";
 import {Party} from "../model/party";
 import {VotingResult} from "../model/voting-result";
+import {DEFAULT_ELECTED, ElectedCandidates} from "../model/elected-candidates";
 
 export interface ReducerElectionsState {
   items: Election[];
   selectedItem: Election;
   originalElectionResult: ElectionResult;
   modifiedElectionResult: ElectionResult;
+  electedCandidates: ElectedCandidates;
   selectedParties: Party[];
 }
 
@@ -24,6 +27,7 @@ export const initialState: ReducerElectionsState = {
   selectedItem: DEFAULT_ELECTION,
   originalElectionResult: DEFAULT_RESULT,
   modifiedElectionResult: DEFAULT_RESULT,
+  electedCandidates: DEFAULT_ELECTED,
   selectedParties: [],
 };
 
@@ -64,6 +68,11 @@ export const electionsReducer = createReducer(
                                         action) => ({
     ...state,
     selectedParties: [...action.payload]
+  })),
+  on(calculateFinishedAction, (state,
+                                 action) => ({
+    ...state,
+    electedCandidates: {...action.payload}
   }))
 );
 
@@ -77,7 +86,7 @@ function mapConstituencyResults(results: { [name: string]: VotingResult[] }): { 
   return result;
 }
 
-function mapConstituencyResultsForm(results: { [name: string]: {[name: string]: VotingResult} }): { [name: string]: VotingResult[] } {
+export function mapConstituencyResultsForm(results: { [name: string]: {[name: string]: VotingResult} }): { [name: string]: VotingResult[] } {
   const result: { [name: string]: VotingResult[] } = {};
   for (const number in results) {
     result[number] = []
@@ -90,7 +99,7 @@ function mapConstituencyResultsForm(results: { [name: string]: {[name: string]: 
   return result;
 }
 
-function mapOverallResultsForm(results: {[name: string]: VotingResult}) : VotingResult[] {
+export function mapOverallResultsForm(results: {[name: string]: VotingResult}) : VotingResult[] {
   const result: VotingResult[] = [];
   for (const number in results) {
     const partyResult = results[number];

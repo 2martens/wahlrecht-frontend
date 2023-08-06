@@ -1,4 +1,21 @@
 <h1 class="mat-headline-5">{{viewModel.election.name}}</h1>
+
+<table mat-table [dataSource]="seatsPerParty" *ngIf="electedCandidates != null">
+  <ng-container matColumnDef="party">
+    <th mat-header-cell *matHeaderCellDef i18n>Party</th>
+    <td mat-cell *matCellDef="let row">{{row.party.abbreviation}}</td>
+  </ng-container>
+  <ng-container matColumnDef="seats">
+    <th mat-header-cell *matHeaderCellDef i18n>Seats</th>
+    <td mat-cell *matCellDef="let row">{{row.seats}}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="resultColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: resultColumns"></tr>
+</table>
+
+<button mat-raised-button i18n (keyup.enter)="onCalculate()" (click)="onCalculate()">Calculate</button>
+
 <form [formGroup]="form">
   <mat-tab-group>
     <mat-tab i18n-label label="Overall results"
