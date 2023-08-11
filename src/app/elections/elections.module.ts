@@ -17,6 +17,10 @@ import { ElectionContainerComponent } from './election-container/election-contai
 import {MatButtonModule} from "@angular/material/button";
 import { ElectionResultComponent } from './election-result/election-result.component';
 import {MatSortModule} from "@angular/material/sort";
+import {MatStepperModule} from "@angular/material/stepper";
+import { SeatAllocationComponent } from './seat-allocation/seat-allocation.component';
+import {MatIconModule} from "@angular/material/icon";
+import { ElectedCandidatesComponent } from './elected-candidates/elected-candidates.component';
 
 
 @NgModule({
@@ -24,7 +28,9 @@ import {MatSortModule} from "@angular/material/sort";
     LandingPageComponent,
     ElectionComponent,
     ElectionContainerComponent,
-    ElectionResultComponent
+    ElectionResultComponent,
+    SeatAllocationComponent,
+    ElectedCandidatesComponent
   ],
   imports: [
     CommonModule,
@@ -40,6 +46,8 @@ import {MatSortModule} from "@angular/material/sort";
     ReactiveFormsModule,
     MatButtonModule,
     MatSortModule,
+    MatStepperModule,
+    MatIconModule,
   ],
   exports: [
     LandingPageComponent

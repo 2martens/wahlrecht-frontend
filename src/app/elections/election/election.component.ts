@@ -213,8 +213,6 @@ export class ElectionComponent implements OnInit {
           map.set(number, modifiedConstituencyResults[number]);
         }
         this.viewModel.electionResult.constituencyResults = map;
-
-
         this.valueChanges.emit(modifiedValue);
       }
     });

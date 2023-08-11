@@ -1,9 +1,8 @@
-import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Party} from "../model/party";
 import {ElectedCandidates} from "../model/elected-candidates";
-import {MatSort, Sort} from "@angular/material/sort";
-import {LiveAnnouncer} from "@angular/cdk/a11y";
-import {MatTableDataSource} from "@angular/material/table";
+import {ViewModel} from "../elected-candidates/elected-candidates.component";
+import {electedCandidates} from "../store";
 
 export interface PartySeats {
   party: string;
@@ -15,50 +14,29 @@ export interface PartySeats {
   templateUrl: './election-result.component.html',
   styleUrls: ['./election-result.component.scss']
 })
-export class ElectionResultComponent implements AfterViewInit {
-  @ViewChild(MatSort) sort: MatSort|null = null;
-  resultColumns: string[] = ['party', 'seats'];
-  seatsPerParty: PartySeats[] = [];
-  dataSource: MatTableDataSource<PartySeats> = new MatTableDataSource<PartySeats>();
+export class ElectionResultComponent {
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-  }
+  @Input() parties: Map<string, Party>|null = null;
+  @Input() electedCandidates: ElectedCandidates | null = null;
 
-  @Input() parties: Map<string, Party> = new Map<string, Party>();
-
-  private _electedCandidates: ElectedCandidates | null = null;
-
-  get electedCandidates(): ElectedCandidates | null {
-    return this._electedCandidates;
-  }
-
-  @Input() set electedCandidates(value: ElectedCandidates | null) {
-    this._electedCandidates = value;
-    if (value != null) {
-      const newSeatAllocations = [];
-      for (const partyAbbreviation in value.seatAllocation) {
-        if (!this.parties.has(partyAbbreviation)) {
-          continue;
-        }
-        newSeatAllocations.push({
-          party: this.parties.get(partyAbbreviation)!.abbreviation,
-          seats: value.seatAllocation[partyAbbreviation]
-        })
-      }
-      this.seatsPerParty = newSeatAllocations;
-      this.dataSource.data = this.seatsPerParty;
+  get partyAbbreviations() {
+    if (this.electedCandidates == null) {
+      return null;
     }
-  }
-
-  constructor(private liveAnnouncer: LiveAnnouncer) {
-  }
-
-  announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-      this.liveAnnouncer.announce($localize`Sorted ${sortState.direction}ending`)
-    } else {
-      this.liveAnnouncer.announce($localize`Sorting cleared`)
+    const electedParties: string[] = [];
+    for (const party in this.electedCandidates.seatAllocation) {
+      electedParties.push(party);
     }
+    return electedParties;
+  }
+
+  getViewModel(partyAbbreviation: string): ViewModel|null {
+    if (this.electedCandidates == null) {
+      return null;
+    }
+    return {
+      partyAbbreviation,
+      electedCandidates: this.electedCandidates
+    };
   }
 }
