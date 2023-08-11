@@ -2,7 +2,6 @@ import {Component, Input} from '@angular/core';
 import {Party} from "../model/party";
 import {ElectedCandidates} from "../model/elected-candidates";
 import {ViewModel} from "../elected-candidates/elected-candidates.component";
-import {electedCandidates} from "../store";
 
 export interface PartySeats {
   party: string;
