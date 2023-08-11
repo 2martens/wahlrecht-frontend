@@ -25,8 +25,8 @@
       <span i18n="application title|The application title in the toolbar">Electoral Law</span>
       <span class="spacer"></span>
       <ng-container *ngIf="isLoggedIn$ | async; else loginButton">
-        <span class="logged-user">Logged in as {{loggedUserName$ | async}}</span>
-        <button mat-raised-button class="app-nav-icon" (click)="logout()">Logout</button>
+        <span class="logged-user" i18n>Logged in as {{loggedUserName$ | async}}</span>
+        <button mat-raised-button class="app-nav-icon" (click)="logout()" i18n>Logout</button>
       </ng-container>
       <ng-template #loginButton>
         <button mat-raised-button class="app-nav-icon" (click)="login()" i18n>Login</button>
