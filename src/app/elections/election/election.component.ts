@@ -4,7 +4,7 @@ import {KeyValue} from "@angular/common";
 import {Party} from "../model/party";
 import {VotingResult} from "../model/voting-result";
 import {Constituency} from "../model/constituency";
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {
   DEFAULT_MODIFIED_RESULT,
   ModifiedElectionResult,
@@ -25,8 +25,6 @@ export class ElectionComponent implements OnInit {
   form: FormGroup;
   overallResults: FormGroup;
   constituencyResults: FormGroup;
-  resultColumns: string[] = ['party', 'seats'];
-  seatsPerParty: { party: Party, seats: number }[] = [];
   showSpinner = false;
   constituencyToId: Map<number, Constituency> = new Map<number, Constituency>();
   constituencyNumberToName: Map<string, string> = new Map<string, string>();
@@ -60,17 +58,6 @@ export class ElectionComponent implements OnInit {
   @Input() set electedCandidates(value: ElectedCandidates | null) {
     this._electedCandidates = value;
     if (value != null) {
-      const newSeatAllocations = [];
-      for (const partyAbbreviation in value.seatAllocation) {
-        if (!this.viewModel.parties.has(partyAbbreviation)) {
-          continue;
-        }
-        newSeatAllocations.push({
-          party: this.viewModel.parties.get(partyAbbreviation)!,
-          seats: value.seatAllocation[partyAbbreviation]
-        })
-      }
-      this.seatsPerParty = newSeatAllocations;
       this.showSpinner = false;
       if (this.calculateButton != undefined) {
         this.calculateButton.disabled = false;

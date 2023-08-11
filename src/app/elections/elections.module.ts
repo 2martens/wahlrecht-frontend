@@ -15,28 +15,32 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ElectionContainerComponent } from './election-container/election-container.component';
 import {MatButtonModule} from "@angular/material/button";
+import { ElectionResultComponent } from './election-result/election-result.component';
+import {MatSortModule} from "@angular/material/sort";
 
 
 @NgModule({
   declarations: [
     LandingPageComponent,
     ElectionComponent,
-    ElectionContainerComponent
+    ElectionContainerComponent,
+    ElectionResultComponent
   ],
-    imports: [
-        CommonModule,
-        ElectionsRoutingModule,
-        StoreModule.forFeature(featureStateName, electionsReducers),
-        EffectsModule.forFeature([ElectionsEffects]),
-        MatTableModule,
-        MatProgressSpinnerModule,
-        MatFormFieldModule,
-        MatTabsModule,
-        MatInputModule,
-        FormsModule,
-        ReactiveFormsModule,
-        MatButtonModule,
-    ],
+  imports: [
+    CommonModule,
+    ElectionsRoutingModule,
+    StoreModule.forFeature(featureStateName, electionsReducers),
+    EffectsModule.forFeature([ElectionsEffects]),
+    MatTableModule,
+    MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatTabsModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatSortModule,
+  ],
   exports: [
     LandingPageComponent
   ]
