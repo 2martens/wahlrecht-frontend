@@ -41,8 +41,8 @@ steps:
     pull: always
     image: 2martens/drone-rsync
     settings:
-      hosts: [ "tbd.uberspace.de" ]
-      user: tbd
+      hosts: [ "gienah.uberspace.de" ]
+      user: wahlfron
       source: /drone/src/dist/wahlrecht-frontend/.
       target: ~/tmp/build
       recursive: true
