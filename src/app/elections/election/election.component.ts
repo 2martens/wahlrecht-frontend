@@ -26,8 +26,18 @@ import {ElectionResultComponent} from "../election-result/election-result.compon
   selector: 'app-election',
   templateUrl: './election.component.html',
   styleUrls: ['./election.component.scss'],
-  imports: [MatTabsModule, MatProgressSpinnerModule, MatButtonModule, ReactiveFormsModule, MatFormFieldModule,
-    MatInputModule, KeyValuePipe, ElectionResultComponent, NgFor, NgIf],
+  imports: [
+    MatTabsModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    KeyValuePipe,
+    ElectionResultComponent,
+    NgFor,
+    NgIf
+  ],
   standalone: true
 })
 export class ElectionComponent implements OnInit {

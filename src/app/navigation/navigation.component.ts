@@ -1,21 +1,19 @@
 import {Component} from '@angular/core';
-import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {KeycloakService} from "keycloak-angular";
 import {from, of, switchMap} from "rxjs";
-import {ActivatedRoute, RouterModule} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {AsyncPipe, NgIf} from "@angular/common";
-import {provideHttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-navigation',
   templateUrl: './navigation.component.html',
   styleUrls: ['./navigation.component.scss'],
-  imports: [RouterModule,
-    KeycloakAngularModule,
+  imports: [
     MatSidenavModule,
     MatToolbarModule,
     MatListModule,
@@ -23,9 +21,7 @@ import {provideHttpClient} from "@angular/common/http";
     MatIconModule,
     NgIf,
     AsyncPipe,
-  ],
-  providers: [
-
+    RouterLink
   ],
   standalone: true
 })
