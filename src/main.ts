@@ -12,8 +12,9 @@ import {provideAnimations} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {ROOT_ROUTES} from "./app/app.routes";
 import "@angular/localize/init";
+import {Location} from "@angular/common";
 
-function initializeKeycloak(keycloak: KeycloakService) {
+function initializeKeycloak(keycloak: KeycloakService, locationService: Location) {
   return () =>
     keycloak.init({
       config: {
@@ -23,8 +24,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
       },
       initOptions: {
         onLoad: 'check-sso',
-        silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/silent-check-sso.html',
+        silentCheckSsoRedirectUri:`${window.location.origin}${locationService.prepareExternalUrl('/assets/silent-check-sso.html')}`,
         flow: "standard"
       },
       shouldAddToken: (request) => {
@@ -41,7 +41,7 @@ bootstrapApplication(AppComponent, {
       provide: APP_INITIALIZER,
       useFactory: initializeKeycloak,
       multi: true,
-      deps: [KeycloakService],
+      deps: [KeycloakService, Location],
     },
     provideRouter(ROOT_ROUTES,
       withComponentInputBinding()),
