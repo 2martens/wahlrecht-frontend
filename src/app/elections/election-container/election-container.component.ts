@@ -11,7 +11,7 @@ import {
   loadElectionResultAction,
   loadPartiesAction,
   loadSingleElectionAction,
-  modifyElectionResultAction
+  modifyElectionResultAction, resetElectionResult
 } from "../store/elections.actions";
 import {DEFAULT_RESULT, ElectionResult} from "../model/election-result";
 import {FormElectionResult} from "../model/form-election-result";
@@ -110,5 +110,9 @@ export class ElectionContainerComponent implements OnInit {
 
   onCalculate(event: ElectionResult) {
     this.store.dispatch(calculateAction({payload: event}));
+  }
+
+  onReset() {
+    this.store.dispatch(resetElectionResult());
   }
 }

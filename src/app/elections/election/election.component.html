@@ -2,11 +2,14 @@
 
 <app-election-result [electedCandidates]="electedCandidates" [parties]="viewModel.parties"></app-election-result>
 
-<button class="mt-2" mat-raised-button i18n #calculateButton (keyup.enter)="onCalculate()" (click)="onCalculate()">
-  <mat-spinner class="spinner" *ngIf="showSpinner"></mat-spinner>
-  Calculate
-</button>
+<div class="row">
+  <button class="mt-2" mat-raised-button i18n="@@button.calculate" #calculateButton (keyup.enter)="onCalculate()" (click)="onCalculate()">
+    <mat-spinner class="spinner" *ngIf="showSpinner"></mat-spinner>
+    Calculate
+  </button>
 
+  <button class="mt-2" mat-raised-button i18n="@@button.reset" (keyup.enter)="onReset()" (click)="onReset()">Reset</button>
+</div>
 
 <form [formGroup]="form">
   <mat-tab-group>

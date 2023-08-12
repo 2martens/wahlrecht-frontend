@@ -9,3 +9,7 @@
 .mt-2 {
   margin-top: 2em;
 }
+
+.row {
+  @include mixins.justifyContent(space-between);
+}

@@ -14,7 +14,7 @@ import {ElectionResult} from "../model/election-result";
 import {FormElectionResult} from "../model/form-election-result";
 import {ElectedCandidates} from "../model/elected-candidates";
 import {mapConstituencyResultsForm, mapOverallResultsForm} from "../store/elections.reducer";
-import {debounceTime, distinctUntilChanged} from "rxjs";
+import {debounceTime, distinctUntilChanged, filter} from "rxjs";
 
 @Component({
   selector: 'app-election',
@@ -34,6 +34,8 @@ export class ElectionComponent implements OnInit {
   readonly valueChanges: EventEmitter<FormElectionResult> = new EventEmitter<FormElectionResult>();
   @Output()
   readonly calculate: EventEmitter<ElectionResult> = new EventEmitter<ElectionResult>();
+  @Output()
+  readonly reset: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor(private fb: FormBuilder) {
     this.overallResults = this.fb.group({});
@@ -82,6 +84,7 @@ export class ElectionComponent implements OnInit {
     })
     this.constituencyToId = constituencyToId;
     this.constituencyNumberToName = constituencyNumberToName;
+    this.updateForm(data.electionResult);
   }
 
   ngOnInit() {
@@ -133,6 +136,40 @@ export class ElectionComponent implements OnInit {
     this.calculate.emit(electionResult);
   }
 
+  onReset() {
+    this.reset.emit(true);
+  }
+
+  private updateForm(electionResult: ModifiedElectionResult) {
+    for (const votingResult of electionResult.overallResults) {
+      const formGroup = this.overallResults.get(votingResult.partyAbbreviation);
+      formGroup?.get('votesOnNomination')?.setValue(votingResult.votesOnNomination, { emitEvent: false });
+      formGroup?.get('votesThroughHealing')?.setValue(votingResult.votesThroughHealing, { emitEvent: false });
+      const votesPerPosition = formGroup?.get('votesPerPosition');
+      const {map, entries} = this.buildVotesPerPosition(votingResult);
+      for (const number of entries) {
+        votesPerPosition?.get(number)?.setValue(map.get(number) || 0, { emitEvent: false });
+      }
+    }
+    for (const constituencyNumber of electionResult.constituencyResults.keys()) {
+      const constituency = this.constituencyToId.get(+constituencyNumber);
+      const votingResults = electionResult.constituencyResults.get(constituencyNumber);
+      if (constituency == null || votingResults == null) {
+        continue;
+      }
+
+      const constituencyFormGroup = this.constituencyResults.get(constituency.name);
+
+      for (const votingResult of votingResults) {
+        const formGroup = constituencyFormGroup?.get(votingResult.partyAbbreviation);
+        const votesPerPosition = formGroup?.get('votesPerPosition');
+        for (const number in votingResult.votesPerPosition) {
+          votesPerPosition?.get(number)?.setValue(votingResult.votesPerPosition[number], { emitEvent: false });
+        }
+      }
+    }
+  }
+
   private setUpForm(election: Election, electionResult: ModifiedElectionResult) {
     this.overallResults = this.fb.group({});
     this.constituencyResults = this.fb.group({});
@@ -150,15 +187,7 @@ export class ElectionComponent implements OnInit {
         partyAbbreviation: this.fb.control<string>(votingResult.partyAbbreviation),
         nominationName: this.fb.control<string>(votingResult.nominationName),
       });
-      const map = new Map<string, number>();
-      for (const number in votingResult.votesPerPosition) {
-        map.set(number, votingResult.votesPerPosition[number]);
-      }
-      const entries = [...map.entries()]
-        .sort((a, b) => {
-          return +a[0] - +b[0];
-        })
-        .map(entry => entry[0]);
+      const {map, entries} = this.buildVotesPerPosition(votingResult);
       for (const number of entries) {
         votesPerPosition.addControl(number, this.fb.control<number>(map.get(number) || 0));
       }
@@ -193,13 +222,14 @@ export class ElectionComponent implements OnInit {
     }
     this.form.valueChanges.pipe(
       debounceTime(1000),
-      distinctUntilChanged()
+      distinctUntilChanged(),
     ).subscribe({
       next: (value: {
         overallResults: { [name: string]: VotingResult },
         constituencyResults: { [name: string]: { [name: string]: VotingResult } }
       }) => {
-        const modifiedValue: FormElectionResult = {...value,
+        const modifiedValue: FormElectionResult = {
+          ...value,
           constituencyResults: {}
         };
         for (const name in value.constituencyResults) {
@@ -216,5 +246,18 @@ export class ElectionComponent implements OnInit {
         this.valueChanges.emit(modifiedValue);
       }
     });
+  }
+
+  private buildVotesPerPosition(votingResult: VotingResult) {
+    const map = new Map<string, number>();
+    for (const number in votingResult.votesPerPosition) {
+      map.set(number, votingResult.votesPerPosition[number]);
+    }
+    const entries = [...map.entries()]
+      .sort((a, b) => {
+        return +a[0] - +b[0];
+      })
+      .map(entry => entry[0]);
+    return {map, entries};
   }
 }

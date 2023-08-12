@@ -22,6 +22,8 @@ export enum ActionTypes {
 
   Calculate = '[Elections] Calculate',
   CalculateFinished = '[Elections] Calculate Finished',
+
+  ResetElectionResult = '[Elections] Reset Election Result',
 }
 
 export const loadAllElectionsAction = createAction(
@@ -76,4 +78,8 @@ export const calculateAction = createAction(
 export const calculateFinishedAction = createAction(
   ActionTypes.CalculateFinished,
   props<{payload: ElectedCandidates}>()
+);
+
+export const resetElectionResult = createAction(
+  ActionTypes.ResetElectionResult
 );

@@ -202,14 +202,20 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1566538032864437775" datatype="html">
-        <source><x id="START_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;mat-spinner class=&quot;spinner&quot; *ngIf=&quot;showSpinner&quot;&gt;"/><x id="CLOSE_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;/mat-spinner&gt;"/> Calculate
-</source>
-        <target><x id="START_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;mat-spinner class=&quot;spinner&quot; *ngIf=&quot;showSpinner&quot;&gt;"/><x id="CLOSE_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;/mat-spinner&gt;"/> Berechne
-</target>
+      <trans-unit id="button.calculate" datatype="html">
+        <source><x id="START_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;mat-spinner class=&quot;spinner&quot; *ngIf=&quot;showSpinner&quot;&gt;"/><x id="CLOSE_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;/mat-spinner&gt;"/> Calculate </source>
+        <target><x id="START_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;mat-spinner class=&quot;spinner&quot; *ngIf=&quot;showSpinner&quot;&gt;"/><x id="CLOSE_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;/mat-spinner&gt;"/> Berechne </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">6,8</context>
+          <context context-type="linenumber">7,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="button.reset" datatype="html">
+        <source>Reset</source>
+        <target>Zurücksetzen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2620368114367873419" datatype="html">
@@ -217,7 +223,7 @@
         <target>Bezirksergebnisse</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5278344113066375587" datatype="html">
@@ -225,7 +231,7 @@
         <target>Listenstimmen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="652158218369589359" datatype="html">
@@ -233,7 +239,7 @@
         <target>Stimmen durch Heilungsregel</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4355395580941190554" datatype="html">
@@ -241,7 +247,7 @@
         <target>Wahlkreisergebnisse</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8889535199141263248" datatype="html">
