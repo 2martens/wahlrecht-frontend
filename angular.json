@@ -17,14 +17,13 @@
         "sourceLocale": "en",
         "locales": {
           "de": {
-            "translation": "src/locale/messages.de.xlf",
-            "baseHref": ""
+            "translation": "src/locale/messages.de.xlf"
           }
         }
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
             "outputPath": "dist/wahlrecht-frontend",
             "index": "src/index.html",
