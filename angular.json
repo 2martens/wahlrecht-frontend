@@ -70,6 +70,22 @@
               ],
               "outputHashing": "all"
             },
+            "productionDebug": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "outputHashing": "all",
+              "localize": ["de"]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -93,6 +109,9 @@
           "configurations": {
             "production": {
               "browserTarget": "wahlrecht-frontend:build:production"
+            },
+            "productionDebug": {
+              "browserTarget": "wahlrecht-frontend:build:productionDebug"
             },
             "development": {
               "browserTarget": "wahlrecht-frontend:build:development"
