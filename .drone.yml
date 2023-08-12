@@ -23,12 +23,8 @@ steps:
         path: /cache
   - name: build
     pull: always
-    image: 2martens/ruby-node:3-18
-    environment:
-      BUNDLE_PATH: .bundle
+    image: node:18-alpine
     commands:
-      - export LANG="C.UTF-8"
-      - export LC_ALL="C.UTF-8"
       - npm ci
       - npm run build:production
   - name: rebuild-cache
