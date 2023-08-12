@@ -7,6 +7,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
 
 import {NavigationComponent} from './navigation.component';
+import {KeycloakAngularModule} from "keycloak-angular";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('NavigationComponent', () => {
   let component: NavigationComponent;
@@ -22,6 +24,8 @@ describe('NavigationComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
+        KeycloakAngularModule,
+        RouterTestingModule
       ]
     }).compileComponents();
   }));

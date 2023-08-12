@@ -19,9 +19,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from "@angular/material/menu";
 import {MatTableModule} from "@angular/material/table";
 import {StoreModule} from '@ngrx/store';
-import {ElectionsModule} from "./elections/elections.module";
 import {EffectsModule} from '@ngrx/effects';
-import {MessagesModule} from "./messages/messages.module";
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -67,7 +65,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatSidenavModule,
     MatMenuModule,
     MatTableModule,
-    MessagesModule,
     StoreModule.forRoot({}, {}),
     EffectsModule.forRoot([])
   ],

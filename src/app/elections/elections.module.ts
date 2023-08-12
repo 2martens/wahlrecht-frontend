@@ -8,19 +8,19 @@ import {electionsReducers, featureStateName} from "./store";
 import {ElectionsRoutingModule} from "./elections-routing.module";
 import {MatTableModule} from "@angular/material/table";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import { ElectionComponent } from './election/election.component';
+import {ElectionComponent} from './election/election.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { ElectionContainerComponent } from './election-container/election-container.component';
+import {ElectionContainerComponent} from './election-container/election-container.component';
 import {MatButtonModule} from "@angular/material/button";
-import { ElectionResultComponent } from './election-result/election-result.component';
+import {ElectionResultComponent} from './election-result/election-result.component';
 import {MatSortModule} from "@angular/material/sort";
 import {MatStepperModule} from "@angular/material/stepper";
-import { SeatAllocationComponent } from './seat-allocation/seat-allocation.component';
+import {SeatAllocationComponent} from './seat-allocation/seat-allocation.component';
 import {MatIconModule} from "@angular/material/icon";
-import { ElectedCandidatesComponent } from './elected-candidates/elected-candidates.component';
+import {ElectedCandidatesComponent} from './elected-candidates/elected-candidates.component';
 
 
 @NgModule({
