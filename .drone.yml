@@ -59,7 +59,6 @@ steps:
         - rm -rf html/*
         - cp -r tmp/build/* html/
         - rm -rf tmp/build
-        - restorecon -R -v html
   - name: notify
     pull: always
     image: 2martens/drone-email
