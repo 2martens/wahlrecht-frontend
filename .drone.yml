@@ -27,6 +27,7 @@ steps:
     commands:
       - npm install
       - npm run build:production
+      - cp /drone/src/.htaccess /drone/src/dist/wahlrecht-frontend/
   - name: rebuild-cache
     privileged: true
     image: 2martens/drone-volume-cache
@@ -58,6 +59,7 @@ steps:
         - rm -rf html/*
         - cp -r tmp/build/* html/
         - rm -rf tmp/build
+        - restorecon -R -v html
   - name: notify
     pull: always
     image: 2martens/drone-email
