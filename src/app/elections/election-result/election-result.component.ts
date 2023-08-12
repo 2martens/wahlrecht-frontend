@@ -1,7 +1,10 @@
 import {Component, Input} from '@angular/core';
 import {Party} from "../model/party";
 import {ElectedCandidates} from "../model/elected-candidates";
-import {ViewModel} from "../elected-candidates/elected-candidates.component";
+import {ElectedCandidatesComponent, ViewModel} from "../elected-candidates/elected-candidates.component";
+import {MatTabsModule} from "@angular/material/tabs";
+import {SeatAllocationComponent} from "../seat-allocation/seat-allocation.component";
+import {NgForOf} from "@angular/common";
 
 export interface PartySeats {
   party: string;
@@ -11,7 +14,9 @@ export interface PartySeats {
 @Component({
   selector: 'app-election-result',
   templateUrl: './election-result.component.html',
-  styleUrls: ['./election-result.component.scss']
+  styleUrls: ['./election-result.component.scss'],
+  imports: [MatTabsModule, SeatAllocationComponent, ElectedCandidatesComponent, NgForOf],
+  standalone: true
 })
 export class ElectionResultComponent {
 

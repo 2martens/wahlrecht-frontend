@@ -1,13 +1,12 @@
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from "@angular/router";
+import {Route} from "@angular/router";
 import {LandingPageComponent} from "./landingpage/landing-page.component";
 import {AppAuthGuard} from "../auth/auth.guard";
 import {ElectionContainerComponent} from "./election-container/election-container.component";
 
-const routes: Routes = [
+export const ELECTION_ROUTES: Route[] = [
   {
     path: '',
-    component: LandingPageComponent,
+    loadComponent: () => import('./landingpage/landing-page.component').then(mod => mod.LandingPageComponent),
     canActivate: [AppAuthGuard],
   },
   {
@@ -17,10 +16,3 @@ const routes: Routes = [
     resolve: []
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class ElectionsRoutingModule {
-}

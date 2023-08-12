@@ -1,9 +1,59 @@
 /// <reference types="@angular/localize" />
 
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {bootstrapApplication} from "@angular/platform-browser";
+import {AppComponent} from "./app/app.component";
+import {APP_INITIALIZER} from "@angular/core";
+import {KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
+import {environment} from "./environments/environment";
+import {provideRouter} from "@angular/router";
+import {provideStore} from "@ngrx/store";
+import {provideEffects} from "@ngrx/effects";
+import {provideAnimations} from "@angular/platform-browser/animations";
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
+import {ROOT_ROUTES} from "./app/app.routes";
 
-import {AppModule} from './app/app.module';
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: environment.keycloakURL,
+        realm: environment.realm,
+        clientId: environment.clientId,
+      },
+      initOptions: {
+        onLoad: 'check-sso',
+        silentCheckSsoRedirectUri:
+          window.location.origin + '/assets/silent-check-sso.html',
+        flow: "standard"
+      },
+      shouldAddToken: (request) => {
+        const {url} = request;
+        return url.startsWith(environment.backendURL);
+      },
+      loadUserProfileAtStartUp: true
+    });
+}
 
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService],
+    },
+    provideRouter(ROOT_ROUTES),
+    provideStore(),
+    provideEffects(),
+    provideAnimations(),
+    provideHttpClient(
+      withInterceptorsFromDi()
+    ),
+    KeycloakService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: KeycloakBearerInterceptor,
+      multi: true
+    }
+  ]
+}).catch(err => console.error(err));

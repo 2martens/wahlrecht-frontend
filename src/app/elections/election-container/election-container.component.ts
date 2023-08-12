@@ -16,6 +16,9 @@ import {
 import {DEFAULT_RESULT, ElectionResult} from "../model/election-result";
 import {FormElectionResult} from "../model/form-election-result";
 import {DEFAULT_ELECTED, ElectedCandidates} from "../model/elected-candidates";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {AsyncPipe, NgIf} from "@angular/common";
+import {ElectionComponent} from "../election/election.component";
 
 export interface ModifiedElectionResult {
   electionName: string;
@@ -38,7 +41,9 @@ export interface ViewModel {
 @Component({
   selector: 'app-election-container',
   templateUrl: './election-container.component.html',
-  styleUrls: ['./election-container.component.scss']
+  styleUrls: ['./election-container.component.scss'],
+  imports: [MatProgressSpinnerModule, AsyncPipe, ElectionComponent, NgIf],
+  standalone: true
 })
 export class ElectionContainerComponent implements OnInit {
   election$: Observable<Election>;

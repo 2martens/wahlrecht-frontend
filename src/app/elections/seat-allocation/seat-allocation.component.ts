@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
-import {MatSort, Sort} from "@angular/material/sort";
-import {MatTableDataSource} from "@angular/material/table";
+import {MatSort, MatSortModule, Sort} from "@angular/material/sort";
+import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {PartySeats} from "../election-result/election-result.component";
 import {ElectedCandidates} from "../model/elected-candidates";
 import {Party} from "../model/party";
@@ -9,7 +9,9 @@ import {LiveAnnouncer} from "@angular/cdk/a11y";
 @Component({
   selector: 'app-seat-allocation',
   templateUrl: './seat-allocation.component.html',
-  styleUrls: ['./seat-allocation.component.scss']
+  styleUrls: ['./seat-allocation.component.scss'],
+  imports: [MatTableModule, MatSortModule],
+  standalone: true
 })
 export class SeatAllocationComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort|null = null;

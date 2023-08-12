@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
 import {ElectedCandidates} from "../model/elected-candidates";
-import {MatSort, Sort} from "@angular/material/sort";
-import {MatTableDataSource} from "@angular/material/table";
+import {MatSort, MatSortModule, Sort} from "@angular/material/sort";
+import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {LiveAnnouncer} from "@angular/cdk/a11y";
 import {ElectionSource} from "../model/election-source";
 
@@ -19,7 +19,9 @@ interface PresentedCandidate {
 @Component({
   selector: 'app-elected-candidates',
   templateUrl: './elected-candidates.component.html',
-  styleUrls: ['./elected-candidates.component.scss']
+  styleUrls: ['./elected-candidates.component.scss'],
+  imports: [MatTableModule, MatSortModule],
+  standalone: true
 })
 export class ElectedCandidatesComponent implements AfterViewInit {
   @ViewChild(MatSort) sort: MatSort | null = null;

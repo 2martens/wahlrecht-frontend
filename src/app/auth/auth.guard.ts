@@ -35,7 +35,7 @@ export class AppAuthGuard extends KeycloakAuthGuard {
     // Allow the user to proceed if all the required roles are present.
     granted = requiredRoles.every((role) => this.roles.includes(role));
 
-    // Routing user into permission denied view if don't have necessary roles.
+    // Routing user into permission denied view if they don't have necessary roles.
     if (!granted) {
       await this.router.navigate(['permission-denied']);
     }

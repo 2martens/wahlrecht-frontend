@@ -1,10 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {DEFAULT_ELECTION, Election} from "../model/election";
-import {KeyValue} from "@angular/common";
+import {KeyValue, KeyValuePipe, NgFor, NgIf} from "@angular/common";
 import {Party} from "../model/party";
 import {VotingResult} from "../model/voting-result";
 import {Constituency} from "../model/constituency";
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {
   DEFAULT_MODIFIED_RESULT,
   ModifiedElectionResult,
@@ -14,12 +14,21 @@ import {ElectionResult} from "../model/election-result";
 import {FormElectionResult} from "../model/form-election-result";
 import {ElectedCandidates} from "../model/elected-candidates";
 import {mapConstituencyResultsForm, mapOverallResultsForm} from "../store/elections.reducer";
-import {debounceTime, distinctUntilChanged, filter} from "rxjs";
+import {debounceTime, distinctUntilChanged} from "rxjs";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatButtonModule} from "@angular/material/button";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {ElectionResultComponent} from "../election-result/election-result.component";
 
 @Component({
   selector: 'app-election',
   templateUrl: './election.component.html',
-  styleUrls: ['./election.component.scss']
+  styleUrls: ['./election.component.scss'],
+  imports: [MatTabsModule, MatProgressSpinnerModule, MatButtonModule, ReactiveFormsModule, MatFormFieldModule,
+    MatInputModule, KeyValuePipe, ElectionResultComponent, NgFor, NgIf],
+  standalone: true
 })
 export class ElectionComponent implements OnInit {
   form: FormGroup;
@@ -143,12 +152,12 @@ export class ElectionComponent implements OnInit {
   private updateForm(electionResult: ModifiedElectionResult) {
     for (const votingResult of electionResult.overallResults) {
       const formGroup = this.overallResults.get(votingResult.partyAbbreviation);
-      formGroup?.get('votesOnNomination')?.setValue(votingResult.votesOnNomination, { emitEvent: false });
-      formGroup?.get('votesThroughHealing')?.setValue(votingResult.votesThroughHealing, { emitEvent: false });
+      formGroup?.get('votesOnNomination')?.setValue(votingResult.votesOnNomination, {emitEvent: false});
+      formGroup?.get('votesThroughHealing')?.setValue(votingResult.votesThroughHealing, {emitEvent: false});
       const votesPerPosition = formGroup?.get('votesPerPosition');
       const {map, entries} = this.buildVotesPerPosition(votingResult);
       for (const number of entries) {
-        votesPerPosition?.get(number)?.setValue(map.get(number) || 0, { emitEvent: false });
+        votesPerPosition?.get(number)?.setValue(map.get(number) || 0, {emitEvent: false});
       }
     }
     for (const constituencyNumber of electionResult.constituencyResults.keys()) {
@@ -164,7 +173,7 @@ export class ElectionComponent implements OnInit {
         const formGroup = constituencyFormGroup?.get(votingResult.partyAbbreviation);
         const votesPerPosition = formGroup?.get('votesPerPosition');
         for (const number in votingResult.votesPerPosition) {
-          votesPerPosition?.get(number)?.setValue(votingResult.votesPerPosition[number], { emitEvent: false });
+          votesPerPosition?.get(number)?.setValue(votingResult.votesPerPosition[number], {emitEvent: false});
         }
       }
     }
