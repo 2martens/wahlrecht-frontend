@@ -5,7 +5,7 @@ import {AppComponent} from "./app/app.component";
 import {APP_INITIALIZER} from "@angular/core";
 import {KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
 import {environment} from "./environments/environment";
-import {provideRouter} from "@angular/router";
+import {provideRouter, withComponentInputBinding} from "@angular/router";
 import {provideStore} from "@ngrx/store";
 import {provideEffects} from "@ngrx/effects";
 import {provideAnimations} from "@angular/platform-browser/animations";
@@ -42,7 +42,8 @@ bootstrapApplication(AppComponent, {
       multi: true,
       deps: [KeycloakService],
     },
-    provideRouter(ROOT_ROUTES),
+    provideRouter(ROOT_ROUTES,
+      withComponentInputBinding()),
     provideStore(),
     provideEffects(),
     provideAnimations(),

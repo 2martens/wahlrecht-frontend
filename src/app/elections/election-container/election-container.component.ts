@@ -1,17 +1,17 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {combineLatest, filter, map, Observable, startWith} from "rxjs";
 import {DEFAULT_ELECTION, Election} from "../model/election";
 import {Party} from "../model/party";
 import {VotingResult} from "../model/voting-result";
 import {Store} from "@ngrx/store";
 import {electedCandidates, ElectionsState, modifiedElectionResult, selectedElection, selectedParties} from "../store";
-import {ActivatedRoute} from "@angular/router";
 import {
   calculateAction,
   loadElectionResultAction,
   loadPartiesAction,
   loadSingleElectionAction,
-  modifyElectionResultAction, resetElectionResult
+  modifyElectionResultAction,
+  resetElectionResult
 } from "../store/elections.actions";
 import {DEFAULT_RESULT, ElectionResult} from "../model/election-result";
 import {FormElectionResult} from "../model/form-election-result";
@@ -45,15 +45,14 @@ export interface ViewModel {
   imports: [MatProgressSpinnerModule, AsyncPipe, ElectionComponent, NgIf],
   standalone: true
 })
-export class ElectionContainerComponent implements OnInit {
+export class ElectionContainerComponent {
   election$: Observable<Election>;
   electionResult$: Observable<ModifiedElectionResult>;
   electedCandidates$: Observable<ElectedCandidates>;
   parties$: Observable<Map<string, Party>>;
   viewModel$: Observable<ViewModel|null>;
 
-  constructor(private route: ActivatedRoute,
-              private store: Store<ElectionsState>) {
+  constructor(private store: Store<ElectionsState>) {
     this.election$ = this.store.select<Election>(selectedElection());
     this.electedCandidates$ = this.store.select<ElectedCandidates>(electedCandidates())
       .pipe(
@@ -100,12 +99,11 @@ export class ElectionContainerComponent implements OnInit {
       );
   }
 
-  ngOnInit() {
-    const name = this.route.snapshot.paramMap.get("name");
-    if (name != null) {
-      this.store.dispatch(loadSingleElectionAction({payload: name}));
-      this.store.dispatch(loadElectionResultAction({payload: name}));
-      this.store.dispatch(loadPartiesAction({payload: name}));
+  @Input() set name(value: string) {
+    if (value != null) {
+      this.store.dispatch(loadSingleElectionAction({payload: value}));
+      this.store.dispatch(loadElectionResultAction({payload: value}));
+      this.store.dispatch(loadPartiesAction({payload: value}));
     }
   }
 
