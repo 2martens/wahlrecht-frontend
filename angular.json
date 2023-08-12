@@ -84,6 +84,7 @@
                 }
               ],
               "outputHashing": "all",
+              "sourceMap": true,
               "localize": ["de"]
             },
             "development": {
