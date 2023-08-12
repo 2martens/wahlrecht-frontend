@@ -11,6 +11,7 @@ import {provideEffects} from "@ngrx/effects";
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {ROOT_ROUTES} from "./app/app.routes";
+import "@angular/localize/init";
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
