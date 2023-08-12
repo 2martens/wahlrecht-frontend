@@ -1,0 +1,89 @@
+kind: pipeline
+name: default
+type: docker
+
+platform:
+  os: linux
+  arch: arm64
+
+clone:
+  skip_verify: true
+
+steps:
+  - name: restore-cache
+    privileged: true
+    pull: always
+    image: 2martens/drone-volume-cache
+    settings:
+      restore: true
+      mount:
+        - ./node_modules
+    volumes:
+      - name: cache
+        path: /cache
+  - name: build
+    pull: always
+    image: 2martens/ruby-node:3-18
+    environment:
+      BUNDLE_PATH: .bundle
+    commands:
+      - export LANG="C.UTF-8"
+      - export LC_ALL="C.UTF-8"
+      - npm ci
+      - npm run build:production
+  - name: rebuild-cache
+    privileged: true
+    image: 2martens/drone-volume-cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
+    volumes:
+      - name: cache
+        path: /cache
+  - name: deploy
+    pull: always
+    image: 2martens/drone-rsync
+    settings:
+      hosts: [ "tbd.uberspace.de" ]
+      user: tbd
+      source: /drone/src/dist/wahlrecht-frontend/.
+      target: ~/tmp/build
+      recursive: true
+      delete: true
+      port: 22
+      key:
+        from_secret: rsync_key
+      script:
+        - shopt -s dotglob
+        - rm -rf tmp/old.build
+        - mkdir tmp/old.build
+        - cp -r html/* tmp/old.build/
+        - rm -rf html/*
+        - cp -r tmp/build/* html/
+        - rm -rf tmp/build
+  - name: notify
+    pull: always
+    image: 2martens/drone-email
+    environment:
+      EMAIL_USERNAME:
+        from_secret: email_username
+      EMAIL_PASSWORD:
+        from_secret: email_password
+    settings:
+      host: howell.uberspace.de
+      port: 587
+      from: Drone <drone@2martens.de>
+      secrets: [email_username, email_password]
+    when:
+      status: [ failure ]
+
+volumes:
+  - name: cache
+    host:
+      path: /var/lib/drone/cache
+
+
+trigger:
+  branch:
+  - master
