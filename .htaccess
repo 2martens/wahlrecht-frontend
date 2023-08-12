@@ -1,10 +1,14 @@
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  RewriteBase /
 
   RewriteCond %{HTTP:Accept-Language} ^de [NC]
-  RewriteRule ^$ /de/ [NC,R]
+  RewriteRule ^$ /de/ [L,R=302]
 
-  # Redirection of requests to index.html
-  RewriteCond %{HTTP:Accept-Language} ^!de [NC]
-  RewriteRule ^$ /en/ [NC,R]
+  RewriteCond %{HTTP:Accept-Language} !^de [NC]
+  RewriteRule ^$ /en/ [L,R=302]
+
+  RewriteCond %{REQUEST_URI} -f [OR]
+  RewriteCond %{REQUEST_URI} -d
+  RewriteRule ^.*$ - [NC,L]
 </IfModule>
