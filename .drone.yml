@@ -25,7 +25,7 @@ steps:
     pull: always
     image: node:18-alpine
     commands:
-      - npm ci
+      - npm install
       - npm run build:production
   - name: rebuild-cache
     privileged: true
