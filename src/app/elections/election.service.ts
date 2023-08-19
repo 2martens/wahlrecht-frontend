@@ -16,9 +16,9 @@ export class ElectionService {
 
   private calculateURL = environment.backendURL + '/calculate';
   private electionsURL = environment.backendURL + '/elections';
-  private electionResultURL = environment.backendURL + '/electionResult/by-election-name/';
-  private electionURL = environment.backendURL + '/elections/by-name/';
-  private partiesURL = environment.backendURL + '/parties/by-election-name/';
+  private electionResultURL = environment.backendURL + '/electionResult/';
+  private electionURL = environment.backendURL + '/elections/';
+  private partiesURL = environment.backendURL + '/parties/';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
