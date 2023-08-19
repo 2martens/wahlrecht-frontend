@@ -16,7 +16,7 @@ export class ElectionService {
 
   private calculateURL = environment.backendURL + '/calculate';
   private electionsURL = environment.backendURL + '/elections';
-  private electionResultURL = environment.backendURL + '/electionResult/';
+  private electionResultURL = environment.backendURL + '/electionResults/';
   private electionURL = environment.backendURL + '/elections/';
   private partiesURL = environment.backendURL + '/parties/';
 
