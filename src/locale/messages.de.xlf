@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="8410191074917777706" datatype="html">
         <source>Electoral Law for the Hamburg district elections</source>
@@ -127,18 +127,6 @@
         <target>Sortiert nach <x id="PH" equiv-text="sortState.direction"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/elected-candidates/elected-candidates.component.ts</context>
-          <context context-type="linenumber">84</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/elections/seat-allocation/seat-allocation.component.ts</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5038371268485014625" datatype="html">
-        <source>Sorting cleared</source>
-        <target>Sortierung aufgehoben</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/elections/elected-candidates/elected-candidates.component.ts</context>
           <context context-type="linenumber">86</context>
         </context-group>
         <context-group purpose="location">
@@ -146,12 +134,24 @@
           <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5038371268485014625" datatype="html">
+        <source>Sorting cleared</source>
+        <target>Sortierung aufgehoben</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/elections/elected-candidates/elected-candidates.component.ts</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/elections/seat-allocation/seat-allocation.component.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7611505946225768001" datatype="html">
         <source>Not elected</source>
         <target>Nicht gewählt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/elected-candidates/elected-candidates.component.ts</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="653622155659569804" datatype="html">
@@ -159,7 +159,7 @@
         <target>Stimmenreihenfolge auf Wahlkreisliste</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/elected-candidates/elected-candidates.component.ts</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8456382439498320725" datatype="html">
@@ -167,7 +167,7 @@
         <target>Listenreihenfolge der Bezirksliste</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/elected-candidates/elected-candidates.component.ts</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6202583245285347133" datatype="html">
@@ -175,7 +175,7 @@
         <target>Stimmenreihenfolge der Bezirksliste</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/elected-candidates/elected-candidates.component.ts</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1403853851109346930" datatype="html">
@@ -315,6 +315,126 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4163726517222695810" datatype="html">
+        <source>Information provided according to Sec. 5 German Telemedia Act (TMG):</source>
+        <target>Angaben gemäß § 5 TMG:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5784339830921661339" datatype="html">
+        <source>Jim Richard Martens<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> Flaßheide 45<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> 22525 Hamburg</source>
+        <target>Jim Richard Martens<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> Flaßheide 45<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> 22525 Hamburg</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">4,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8992581192492320921" datatype="html">
+        <source>Contact:</source>
+        <target>Kontakt:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="43877317882891619" datatype="html">
+        <source>Email: admin@2martens.de</source>
+        <target>Email: admin@2martens.de</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2240843474088442730" datatype="html">
+        <source>Responsible for contents acc. to Sec. 18, para. 2 German Federal Media Agreement (MStV):</source>
+        <target>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8729481959879718132" datatype="html">
+        <source>Jim Martens<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> Flaßheide 45<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> 22525 Hamburg</source>
+        <target>Jim Martens<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> Flaßheide 45<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> 22525 Hamburg</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">13,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3644729830179576126" datatype="html">
+        <source>Liability for Contents</source>
+        <target>Haftung für Inhalte</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4499562666741912958" datatype="html">
+        <source>As service providers, we are liable for own contents of these websites according to Sec. 7, paragraph 1 German Telemedia Act (TMG). However, according to Sec. 8 to 10 German Telemedia Act (TMG), service providers are not obligated to permanently monitor submitted or stored information or to search for evidences that indicate illegal activities.</source>
+        <target>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">18,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="372964440651405378" datatype="html">
+        <source>Legal obligations to removing information or to blocking the use of information remain unchallenged. In this case, liability is only possible at the time of knowledge about a specific violation of law. Illegal contents will be removed immediately at the time we get knowledge of them.</source>
+        <target>Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1556430671784678085" datatype="html">
+        <source>Liability for Links</source>
+        <target>Haftung für Links</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5734949063386456780" datatype="html">
+        <source>Our offer includes links to external third party websites. We have no influence on the contents of those websites, therefore we cannot guarantee for those contents. Providers or administrators of linked websites are always responsible for their own contents.</source>
+        <target>Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">25,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7844833336113122846" datatype="html">
+        <source>The linked websites had been checked for possible violations of law at the time of the establishment of the link. Illegal contents were not detected at the time of the linking. A permanent monitoring of the contents of linked websites cannot be imposed without reasonable indications that there has been a violation of law. Illegal links will be removed immediately at the time we get knowledge of them.</source>
+        <target>Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">28,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8768506950499277937" datatype="html">
+        <source>Copyright</source>
+        <target>Urheberrecht</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2735867034330583394" datatype="html">
+        <source>Contents and compilations published on these websites by the providers are subject to German copyright laws. Reproduction, editing, distribution as well as the use of any kind outside the scope of the copyright law require a written permission of the author or originator. Downloads and copies of these websites are permitted for private use only.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> The commercial use of our contents without permission of the originator is prohibited.</source>
+        <target>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">33,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2124337006731577285" datatype="html">
+        <source>Copyright laws of third parties are respected as long as the contents on these websites do not originate from the provider. Contributions of third parties on this site are indicated as such. However, if you notice any violations of copyright law, please inform us. Such contents will be removed immediately.</source>
+        <target>Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
+          <context context-type="linenumber">37,39</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3164042050176092352" datatype="html">
         <source>You are not logged in which prevents data from loading</source>
         <target>Du bist nicht eingeloggt, was das Laden von Daten verhindert</target>
@@ -367,12 +487,22 @@
         <note priority="1" from="description">The name of the elections page</note>
         <note priority="1" from="meaning">link name</note>
       </trans-unit>
+      <trans-unit id="1213249934851573317" datatype="html">
+        <source>Legal Notice</source>
+        <target>Impressum</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <note priority="1" from="description">The name of the legal notice page</note>
+        <note priority="1" from="meaning">link name</note>
+      </trans-unit>
       <trans-unit id="7866051700047887455" datatype="html">
         <source>Electoral Law</source>
         <target>Wahlrecht</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">26</context>
         </context-group>
         <note priority="1" from="description">The application title in the toolbar</note>
         <note priority="1" from="meaning">application title</note>
@@ -382,7 +512,7 @@
         <target>Eingeloggt als <x id="INTERPOLATION" equiv-text="{{loggedUserName$ | async}}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
-          <context context-type="linenumber">28,29</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3797778920049399855" datatype="html">
@@ -390,7 +520,7 @@
         <target>Ausloggen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2454050363478003966" datatype="html">
@@ -398,7 +528,7 @@
         <target>Login</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
     </body>

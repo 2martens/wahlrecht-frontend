@@ -19,6 +19,10 @@ export const ROOT_ROUTES: Route[] = [
       .then(mod => mod.PermissionDeniedComponent)
   },
   {
+    path: 'legal-notice',
+    loadComponent: () => import("./legal-notice/legal-notice.component").then(mod => mod.LegalNoticeComponent)
+  },
+  {
     path: '',
     loadComponent: () => import("./dashboard/dashboard.component").then(mod => mod.DashboardComponent),
     pathMatch: 'full'
