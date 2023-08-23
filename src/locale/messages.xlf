@@ -180,46 +180,53 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2926459005157854501" datatype="html">
+        <source>The originally loaded election results are taken from the website of the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://www.statistik-nord.de/wahlen/wahlen-in-hamburg&quot;&gt;"/>Statistikamt Nord<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="button.calculate" datatype="html">
         <source><x id="START_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;mat-spinner class=&quot;spinner&quot; *ngIf=&quot;showSpinner&quot;&gt;"/><x id="CLOSE_TAG_MAT_SPINNER" ctype="x-mat_spinner" equiv-text="&lt;/mat-spinner&gt;"/> Calculate </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">7,9</context>
+          <context context-type="linenumber">9,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="button.reset" datatype="html">
         <source>Reset</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2620368114367873419" datatype="html">
         <source>Overall results</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5278344113066375587" datatype="html">
         <source>Votes on nomination</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="652158218369589359" datatype="html">
         <source>Votes through healing</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4355395580941190554" datatype="html">
         <source>Constituency results</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/elections/election/election.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8889535199141263248" datatype="html">
