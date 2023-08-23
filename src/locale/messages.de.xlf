@@ -362,6 +362,10 @@
           <context context-type="sourcefile">src/app/legal-notice/legal-notice.component.html</context>
           <context context-type="linenumber">13,15</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">36,38</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="3644729830179576126" datatype="html">
         <source>Liability for Contents</source>
@@ -497,12 +501,22 @@
         <note priority="1" from="description">The name of the legal notice page</note>
         <note priority="1" from="meaning">link name</note>
       </trans-unit>
+      <trans-unit id="6132019390784336883" datatype="html">
+        <source>Privacy Policy</source>
+        <target>Datenschutzerklärung</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <note priority="1" from="description">The name of the privacy policy page</note>
+        <note priority="1" from="meaning">link name</note>
+      </trans-unit>
       <trans-unit id="7866051700047887455" datatype="html">
         <source>Electoral Law</source>
         <target>Wahlrecht</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <note priority="1" from="description">The application title in the toolbar</note>
         <note priority="1" from="meaning">application title</note>
@@ -512,7 +526,7 @@
         <target>Eingeloggt als <x id="INTERPOLATION" equiv-text="{{loggedUserName$ | async}}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
-          <context context-type="linenumber">29,30</context>
+          <context context-type="linenumber">30,31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3797778920049399855" datatype="html">
@@ -520,7 +534,7 @@
         <target>Ausloggen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2454050363478003966" datatype="html">
@@ -528,7 +542,311 @@
         <target>Login</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/navigation/navigation.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7094009074606381897" datatype="html">
+        <source>1. An overview of data protection</source>
+        <target>1. Datenschutz auf einen Blick</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6439365426343089851" datatype="html">
+        <source>General</source>
+        <target>Allgemeine Hinweise</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2508824202708799011" datatype="html">
+        <source>The following gives a simple overview of what happens to your personal information when you visit our website. Personal information is any data with which you could be personally identified. Detailed information on the subject of data protection can be found in our privacy policy found below.</source>
+        <target>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">5,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1984076916669932376" datatype="html">
+        <source>Data collection on our website</source>
+        <target>Datenerfassung auf unserer Website</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7215485116334023019" datatype="html">
+        <source>Who is responsible for the data collection on this website?</source>
+        <target>Wer ist verantwortlich für die Datenerfassung auf dieser Website?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6612491605887646829" datatype="html">
+        <source>The data collected on this website are processed by the website operator. The operator&apos;s contact details can be found in the website&apos;s required legal notice.</source>
+        <target>Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Impressum dieser Website entnehmen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7995022877119075911" datatype="html">
+        <source>How do we collect your data?</source>
+        <target>Wie erfassen wir Ihre Daten?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1935057527307312888" datatype="html">
+        <source>Some data are collected when you provide it to us. This could, for example, be data you enter on a contact form.</source>
+        <target>Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.B. um Daten handeln, die Sie in ein Kontaktformular eingeben.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5597463302751697554" datatype="html">
+        <source>Other data are collected automatically by our IT systems when you visit the website. These data are primarily technical data such as the browser and operating system you are using or when you accessed the page. These data are collected automatically as soon as you enter our website.</source>
+        <target>Andere Daten werden automatisch beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie unsere Website betreten.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">14,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2455257454625241579" datatype="html">
+        <source>What do we use your data for?</source>
+        <target>Wofür nutzen wir Ihre Daten?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7809067158534255570" datatype="html">
+        <source>Part of the data is collected to ensure the proper functioning of the website. Other data can be used to analyze how visitors use the site.</source>
+        <target>Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7986551410962743416" datatype="html">
+        <source>What rights do you have regarding your data?</source>
+        <target>Welche Rechte haben Sie bezüglich Ihrer Daten?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="877914976172577244" datatype="html">
+        <source>You always have the right to request information about your stored data, its origin, its recipients, and the purpose of its collection at no charge. You also have the right to request that it be corrected, blocked, or deleted. You can contact us at any time using the address given in the legal notice if you have further questions about the issue of privacy and data protection. You may also, of course, file a complaint with the competent regulatory authorities.</source>
+        <target>Sie haben jederzeit das Recht unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung, Sperrung oder Löschung dieser Daten zu verlangen. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit unter der im Impressum angegebenen Adresse an uns wenden. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">21,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2191803416902108758" datatype="html">
+        <source>2. General information and mandatory information</source>
+        <target>2. Allgemeine Hinweise und Pflichtinformationen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="26435725791269325" datatype="html">
+        <source>Data protection</source>
+        <target>Datenschutz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8494202269398594052" datatype="html">
+        <source>The operators of this website take the protection of your personal data very seriously. We treat your personal data as confidential and in accordance with the statutory data protection regulations and this privacy policy.</source>
+        <target>Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4328258811046409974" datatype="html">
+        <source>If you use this website, various pieces of personal data will be collected. Personal information is any data with which you could be personally identified. This privacy policy explains what information we collect and what we use it for. It also explains how and for what purpose this happens.</source>
+        <target>Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">29,31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1027549145747938279" datatype="html">
+        <source>Please note that data transmitted via the internet (e.g. via email communication) may be subject to security breaches. Complete protection of your data from third-party access is not possible.</source>
+        <target>Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="169830721104092560" datatype="html">
+        <source>Notice concerning the party responsible for this website</source>
+        <target>Hinweis zur verantwortlichen Stelle</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4820664030743843196" datatype="html">
+        <source>The party responsible for processing data on this website is:</source>
+        <target>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3161065492983597721" datatype="html">
+        <source>Telephone: 04021082122<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> Email: admin@2martens.de</source>
+        <target>Telephone: 04021082122<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br /&gt;"/> Email: admin@2martens.de</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7905927681311563835" datatype="html">
+        <source>The responsible party is the natural or legal person who alone or jointly with others decides on the purposes and means of processing personal data (names, email addresses, etc.).</source>
+        <target>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.B. Namen, E-Mail-Adressen o. Ä.) entscheidet.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6714586889725429863" datatype="html">
+        <source>SSL or TLS encryption</source>
+        <target>SSL- bzw. TLS-Verschlüsselung</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1836251847387471467" datatype="html">
+        <source>This site uses SSL or TLS encryption for security reasons and for the protection of the transmission of confidential content, such as the inquiries you send to us as the site operator. You can recognize an encrypted connection in your browser&apos;s address line when it changes from &quot;http://&quot; to &quot;https://&quot; and the lock icon is displayed in your browser&apos;s address bar.</source>
+        <target>Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Bestellungen oder Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL-bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von “http://” auf “https://” wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">45,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2208501875535236951" datatype="html">
+        <source>If SSL or TLS encryption is activated, the data you transfer to us cannot be read by third parties.</source>
+        <target>Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8496504730698575474" datatype="html">
+        <source>Opposition to promotional emails</source>
+        <target>Widerspruch gegen Werbe-Mails</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="613217221294450453" datatype="html">
+        <source>We hereby expressly prohibit the use of contact data published in the context of website legal notice requirements with regard to sending promotional and informational materials not expressly requested. The website operator reserves the right to take specific legal action if unsolicited advertising material, such as email spam, is received.</source>
+        <target>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen. Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-E-Mails, vor.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">51,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4922617227895850849" datatype="html">
+        <source>3. Data collection on our website</source>
+        <target>3. Datenerfassung auf unserer Website</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1713374372529970016" datatype="html">
+        <source>Server log files</source>
+        <target>Server-Log-Dateien</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2183968270886173669" datatype="html">
+        <source>The website provider automatically collects and stores information that your browser automatically transmits to us in &quot;server log files&quot;. These are:</source>
+        <target>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">57,58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3166551216306447567" datatype="html">
+        <source>Browser type and browser version</source>
+        <target>Browsertyp und Browserversion</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6835495175170725471" datatype="html">
+        <source>Operating system used</source>
+        <target>verwendetes Betriebssystem</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2278689684150704767" datatype="html">
+        <source>Referrer URL</source>
+        <target>Referrer URL</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5592237348567809333" datatype="html">
+        <source>Host name of the accessing computer</source>
+        <target>Hostname des zugreifenden Rechners</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="614584893777242704" datatype="html">
+        <source>Time of the server request</source>
+        <target>Uhrzeit der Serveranfrage</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2483018961011868950" datatype="html">
+        <source>IP address</source>
+        <target>IP-Adresse</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1380597398928949050" datatype="html">
+        <source>These data will not be combined with data from other sources.</source>
+        <target>Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8104799523184204322" datatype="html">
+        <source>The basis for data processing is Art. 6 (1) (b) DSGVO, which allows the processing of data to fulfill a contract or for measures preliminary to a contract.</source>
+        <target>Grundlage für die Datenverarbeitung ist Art. 6 Abs. 1 lit. b DSGVO, der die Verarbeitung von Daten zur Erfüllung eines Vertrags oder vorvertraglicher Maßnahmen gestattet.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/privacy-policy/privacy-policy.component.html</context>
+          <context context-type="linenumber">68,69</context>
         </context-group>
       </trans-unit>
     </body>
