@@ -4,6 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "startRemote": "ng serve -c developmentRemote",
     "build": "ng build",
     "build:development": "ng build -c development",
     "build:development:stats": "ng build -c development --stats-json",

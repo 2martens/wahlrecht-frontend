@@ -100,6 +100,15 @@
                 }
               ],
               "localize": ["de"]
+            },
+            "developmentRemote": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "localize": ["de"]
             }
           },
           "defaultConfiguration": "production"
@@ -115,6 +124,9 @@
             },
             "development": {
               "browserTarget": "wahlrecht-frontend:build:development"
+            },
+            "developmentRemote": {
+              "browserTarget": "wahlrecht-frontend:build:developmentRemote"
             }
           },
           "defaultConfiguration": "development"
