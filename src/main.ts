@@ -2,7 +2,7 @@
 
 import {bootstrapApplication} from "@angular/platform-browser";
 import {AppComponent} from "./app/app.component";
-import {APP_INITIALIZER} from "@angular/core";
+import {APP_INITIALIZER, isDevMode} from "@angular/core";
 import {KeycloakBearerInterceptor, KeycloakService} from "keycloak-angular";
 import {environment} from "./environments/environment";
 import {provideRouter, withComponentInputBinding} from "@angular/router";
@@ -13,6 +13,7 @@ import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@ang
 import {ROOT_ROUTES} from "./app/app.routes";
 import "@angular/localize/init";
 import {Location} from "@angular/common";
+import {provideServiceWorker} from '@angular/service-worker';
 
 function initializeKeycloak(keycloak: KeycloakService, locationService: Location) {
   return () =>
@@ -24,7 +25,7 @@ function initializeKeycloak(keycloak: KeycloakService, locationService: Location
       },
       initOptions: {
         onLoad: 'check-sso',
-        silentCheckSsoRedirectUri:`${window.location.origin}${locationService.prepareExternalUrl('/assets/silent-check-sso.html')}`,
+        silentCheckSsoRedirectUri: `${window.location.origin}${locationService.prepareExternalUrl('/assets/silent-check-sso.html')}`,
         flow: "standard"
       },
       shouldAddToken: (request) => {
@@ -43,19 +44,20 @@ bootstrapApplication(AppComponent, {
       multi: true,
       deps: [KeycloakService, Location],
     },
-    provideRouter(ROOT_ROUTES,
-      withComponentInputBinding()),
+    provideRouter(ROOT_ROUTES, withComponentInputBinding()),
     provideStore(),
     provideEffects(),
     provideAnimations(),
-    provideHttpClient(
-      withInterceptorsFromDi()
-    ),
+    provideHttpClient(withInterceptorsFromDi()),
     KeycloakService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: KeycloakBearerInterceptor,
       multi: true
-    }
+    },
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    })
   ]
 }).catch(err => console.error(err));
