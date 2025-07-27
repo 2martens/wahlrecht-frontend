@@ -21,12 +21,12 @@ jobs:
       - name: Build
         run: |
           npm run build:production
-          cp src/.htaccess src/dist/wahlrecht-frontend/
+          cp .htaccess dist/wahlrecht-frontend/
       - name: Copy files to remote
         uses: burnett01/rsync-deployments@7.0.2
         with:
           switches: -az -r --del
-          path: src/dist/wahlrecht-frontend/.
+          path: dist/wahlrecht-frontend/.
           remote_path: ~/tmp/build
           remote_host: ${{ secrets.DEPLOY_HOST }}
           remote_port: ${{ secrets.DEPLOY_PORT }}
